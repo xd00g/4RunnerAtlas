@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#050606">
+  <title>4Runner (4th Gen) Atlas · by Nebulys</title>
+  <link rel="icon" href="brand/nebulys-favicon.ico">
+  <link rel="stylesheet" href="nebulys-theme.css">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="reading-controls.js"></script>
+  <script type="module" src="bootstrap.js"></script>
+
+</head>
+<body>
+  <header class="topbar">
+    <a class="identity nebulys-brand" href="./" aria-label="4Runner (4th Gen) Atlas by Nebulys home">
+      <img src="brand/nebulys-mark.svg" alt="" width="32" height="32">
+      <span><strong>4Runner (4th Gen) Atlas</strong><span class="identity-sub">by Nebulys</span></span>
+    </a>
+    <div class="vehicle-name">2005 Toyota 4Runner <span>Sport · 4WD · 4.7 L V8</span></div>
+    <div class="header-actions">
+      <a class="manual-link" hidden href="manual.html">Service manual</a>
+      <button id="about" class="text-button">About this model</button>
+      <details class="file-menu"><summary>Model files <span aria-hidden="true">↓</span></summary><div><a id="download-model" href="models/4runner-systems.4bfb5766baf03986.glb" download>Download current 3D model (.glb)</a><a id="download-source" hidden href="models/4runner-systems.blend" download>Download current Blender source</a></div></details>
+    </div>
+  </header>
+  <div class="scopebar">
+    <details id="view-picker" class="view-picker">
+      <summary id="view-picker-toggle"><span class="view-picker-label">View</span><strong id="scope-current">Whole vehicle</strong><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></summary>
+      <div class="view-picker-panel">
+        <label class="sr-only" for="view-search">Find a view</label>
+        <input id="view-search" type="search" placeholder="Find a view…" autocomplete="off" spellcheck="false" aria-controls="view-options">
+        <div class="view-picker-meta"><span id="view-count" role="status"></span><button id="view-search-clear" type="button" hidden>Clear</button></div>
+        <nav id="view-options" class="view-options" aria-label="Model views"></nav>
+        <p id="view-empty" hidden>No views found. Try “door” or “engine”.</p>
+      </div>
+    </details>
+    <button id="toggle-sidebar" type="button" class="stage-button" aria-controls="assembly-sidebar" aria-expanded="true">Hide sidebar</button><button id="expand-part" type="button" class="stage-button" aria-haspopup="dialog" disabled>Expand part info</button>
+    <span id="scope-description">Explore the vehicle, then open the engine.</span>
+  </div>
+  <div id="component-breadcrumb" class="component-breadcrumb" hidden><button id="scope-parent">← Whole vehicle</button><nav id="scope-trail" aria-label="Assembly path"></nav><span id="component-parent" hidden></span><strong id="component-current"></strong><span class="component-notice">Reference-guided · Dimensions approximate</span></div>
+  <main class="workspace">
+    <aside id="assembly-sidebar" class="catalog" aria-label="Assembly catalog">
+      <div class="catalog-head"><h1 id="catalog-title" tabindex="-1">Assemblies</h1><span id="assembly-count" class="count">—</span></div>
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
+        <input id="search" type="search" placeholder="Find an assembly…" aria-label="Search assemblies" autocomplete="off">
+        <kbd aria-hidden="true">/</kbd>
+      </div>
+      <div class="search-context"><label for="search-area">Search in</label><select id="search-area"><option value="truck">Whole truck</option><option value="view">This view</option></select><button id="search-clear" hidden>Clear</button></div>
+      <div class="catalog-filters"><label id="system-label" class="sr-only" for="system">Vehicle system</label><select id="system"><option value="all">All systems</option><option>Body</option><option>Powertrain</option><option>Chassis</option><option>Wheels</option><option>Cabin</option></select><button id="restore" class="text-button" disabled>Restore hidden</button></div>
+      <div id="catalog-status" class="catalog-status" role="status" hidden></div>
+      <div id="part-list" class="part-list" role="list" aria-label="Search results"><p class="list-message">Loading assembly catalog…</p></div>
+      <div id="selection" class="selection">
+        <div class="selection-empty"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m16 3 12 7v13l-12 7L4 23V10Zm-12 7 12 7 12-7M16 17v13"/></svg><h2>Explore how it fits.</h2><p>Select an assembly in the model or the list to see its role and references.</p></div>
+      </div>
+    </aside>
+    <section class="stage" aria-label="Interactive 3D vehicle">
+      <div class="stage-top">
+        <div class="view-controls" role="group" aria-label="Camera views"><button data-view="perspective" aria-pressed="true">3/4</button><button data-view="front" aria-pressed="false">Front</button><button data-view="side" aria-pressed="false">Side</button><button data-view="top" aria-pressed="false">Top</button></div>
+        <div class="stage-actions"><button id="night-view" class="stage-button night-toggle" aria-pressed="false" title="Switch to the night lighting environment">Night view</button><button id="engine-view" class="stage-button" type="button" title="Open the detailed engine view">Engine</button><button id="powertrain-view" class="stage-button night-toggle" type="button" aria-pressed="false">Powertrain</button>
+        <button id="chassis-view" class="stage-button" aria-pressed="false" title="Show the chassis and underbody systems">Chassis view</button><button id="fit" class="stage-button" title="Fit visible assemblies in view">Fit view</button></div>
+        <div id="model-selection-actions" class="model-selection-actions" role="group" aria-label="Selected part actions" hidden>
+          <span id="model-selected-name" class="model-selected-name"></span>
+          <div class="model-selection-buttons"><button id="model-isolate" type="button" aria-pressed="false" title="Show only this selection (I)">Isolate</button><button id="model-focus" type="button" title="Zoom to this selection (F)">Focus</button><button id="model-clear" type="button" title="Clear selection (Escape)">Clear</button></div>
+        </div>
+      </div>
+      <div class="mobile-context"><strong id="mobile-identity">2005 4Runner Sport · 4.7 L V8</strong><span id="mobile-scope">Approximate major-assembly study</span><span id="mobile-configuration">VIN-confirmed 4WD · Geometry approximate</span></div>
+      <div id="viewport" tabindex="0" role="group" aria-label="3D model. Drag to rotate, scroll to zoom. Select assemblies from the catalog for keyboard access."></div>
+      <div id="labels" class="labels" aria-hidden="true"></div>
+      <div id="loading" class="load-state"><div class="load-line"></div><strong id="load-title">Preparing the 4Runner</strong><span id="load-detail">Loading local 3D geometry…</span></div>
+      <div id="load-error" class="load-state error-state" hidden><strong>The 3D model could not load.</strong><span id="error-detail">Reload the page to try again.</span><button id="reload-viewer">Reload viewer</button></div>
+      <div class="stage-caption"><span id="stage-mode">Assembled</span><span id="visible-count"></span></div>
+      <div class="stage-tools">
+        <div id="engine-motion" class="engine-motion" role="group" aria-label="Engine motion study" hidden>
+          <div class="motion-actions"><button id="engine-play" class="motion-play" aria-pressed="false" disabled>Play</button><button id="engine-reveal" aria-pressed="false" disabled>Reveal internals</button><label class="sr-only" for="engine-speed">Playback speed</label><select id="engine-speed" disabled><option value="0.5">Very slow</option><option value="1" selected>Slow</option><option value="2">Faster</option></select><button id="engine-motion-reset" disabled>Reset motion</button></div>
+          <div class="motion-scrub"><label for="engine-angle">Crank</label><input id="engine-angle" type="range" min="0" max="720" step="1" value="0" disabled><output id="engine-angle-value" for="engine-angle">0°</output></div>
+          <p id="engine-motion-hint">Illustrative motion · Valve lift, VVT-i phase and combustion are not simulated.</p>
+        </div>
+        <div class="layout-row"><span>Layout</span><div role="group" aria-label="Explosion layout"><button data-layout="spatial" aria-pressed="true" disabled>Spatial</button><button data-layout="grid" aria-pressed="false" disabled>Grid</button></div><span id="grid-hint" hidden>Fit view to see the full grid</span></div>
+        <div class="explode-row"><button id="explode-toggle" class="primary-button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 4-8 4-8-4Zm-8 9 8 4 8-4M4 17l8 4 8-4"/></svg><span>Explode vehicle</span></button><label for="explode" class="sr-only">Explode amount</label><input id="explode" type="range" min="0" max="100" value="0" disabled><output id="explode-value" for="explode">0%</output></div>
+        <div class="utility-row"><div><button id="xray" aria-pressed="false" disabled>X-ray</button><button id="label-toggle" aria-pressed="false" disabled>Labels</button></div><span class="interaction-help">Drag to orbit · Scroll to zoom</span><button id="reset" disabled>Reset all</button></div>
+      </div>
+    </section>
+  </main>
+  <footer class="statusbar"><span><span class="status-dot"></span><span id="study-label">Major assembly study</span><span class="status-separator">/</span> Approximate geometry</span><label id="vehicle-configuration" for="configuration">Drivetrain <select id="configuration"><option value="4wd" selected>Your vehicle · 4WD</option><option value="2wd">Compare · 2WD preview</option></select></label><span id="engine-context" hidden>2005 2UZ-FE VVT-i · Component study</span></footer>
+  <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+  <dialog id="about-dialog"><div class="dialog-heading"><h2>About this model</h2><button id="close-about" aria-label="Close model information">Close</button></div>
+    <div data-info-scope="vehicle">
+    <p>The owner-approved <strong>Sport and viper-cut model</strong> is the base for this explorer. Its visible surfaces are separated into core assembly groups, keeping the approved exterior together when assembled.</p>
+    <h3>Coverage</h3><p id="vehicle-coverage">The approved exterior is separated across the existing 29 assembly IDs. Missing mechanical systems retain approximate study geometry. Individual service parts and mechanical fitment remain incomplete.</p>
+    <h3>Configuration</h3><p id="configuration-note">Toyota's VIN lookup confirms Sport, 4WD, 4.7 L V8 and a five-speed automatic. The 2WD comparison removes two conditional assemblies. That preview does not change the owner's vehicle configuration or verify component fitment.</p>
+    <p><a href="licenses.html">Credits and licenses</a></p><h3>Model credits</h3><p>Toyota 4Runner Mk4 Stock, credited to Pitstop 3D in the file, acquired through sadiqminhas on Sketchfab under CC BY 4.0. Both credits are retained because the relationship between the listings has not been independently established. Local changes: SPORT lettering, front bumper viper cuts, and assembly separation. The original download is preserved.</p>
+    <ul class="source-links"><li><a href="https://sketchfab.com/3d-models/toyota-4runner-mk4-stock-1d03fb82b26b43888d746a471d375798" target="_blank" rel="noopener noreferrer">Pitstop 3D · Toyota 4Runner Mk4 Stock <span>Original creator credit embedded in the model</span></a></li><li><a href="https://sketchfab.com/3d-models/toyota-4runner-3afb8daa0a4a4bfea99e1af74eca1bdb" target="_blank" rel="noopener noreferrer">sadiqminhas · Download listing <span>Acquired source · CC BY 4.0</span></a></li><li><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution 4.0 <span>Model license</span></a></li><li><a href="source-model.html">Approved exterior comparison <span>Customized model and original download</span></a></li><li><a href="https://www.ms-auto.co.jp/wp-content/catalog/4runner/4Runner_2005.pdf" target="_blank" rel="noopener noreferrer">2005 Toyota brochure <span>Factory specifications; source scale and fitment are approximate</span></a></li></ul>
+    <p class="dialog-footnote">Each assembly has a stable ID so source geometry and individual parts can replace or extend this study. Exploding the model shows relationships, not a verified removal sequence.</p>
+    </div>
+    <div data-info-scope="engine" hidden>
+      <p>Explore the major components of the <strong>2005 2UZ-FE VVT-i 4.7 L V8</strong>. Select a component to reveal it, isolate it for a closer look, or use the slider to separate the engine.</p>
+      <h3>What is represented</h3><p>Original study geometry follows the V8 layout, separate cylinder heads and covers, four camshafts, belt-and-gear timing drive, intake, crankshaft, piston-and-rod groups and accessories. Play animates the crankshaft, eight rigid connecting rods and pistons, four camshafts and the represented drive pulleys. Reveal internals makes enclosing groups transparent. Pause or scrub the crank angle to inspect the linkage. Belts and valves remain static; combustion, VVT-i phase and dynamic clearances are not simulated. Shapes and dimensions are approximate; this is not Toyota CAD.</p>
+      <h3>Coverage</h3><p>Some selections are groups, such as a piston with its connecting rod. Smaller decorative features are not separately identified service parts. Individual hardware, oil and coolant passages, seals and other detail remain incomplete. The detailed engine is integrated into the whole-vehicle model with approximate installed fit. OEM part numbers and fitment are unverified.</p>
+      <ul id="engine-source-links" class="source-links"></ul>
+      <p class="dialog-footnote">Explosion shows component relationships. It is not a verified repair order, timing procedure or mechanical simulation. Whole vehicle returns to the vehicle view with its earlier selection and controls preserved.</p>
+    </div>
+    <div data-info-scope="components" hidden>
+      <p id="component-about"></p>
+      <h3>Coverage</h3><p id="component-coverage"></p>
+      <h3>Reference sources</h3><ul id="component-source-links" class="source-links"></ul>
+      <p class="dialog-footnote">These are editable component study groups. Small surface details and hardware inside a selection are not individually identified service parts. The explosion is a viewing aid, not a repair sequence. Return to Whole vehicle to restore your previous view.</p>
+    </div>
+  </dialog>
+<dialog id="part-dialog" aria-label="Part information"><div class="part-dialog-toolbar"><strong>Part information</strong><button id="close-part-dialog" type="button" autofocus>Close</button></div><div id="part-dialog-content"></div></dialog>
+<footer class="site-copyright">&copy; 2026 | <a href="https://www.nebulys.net" target="_blank" rel="noopener noreferrer">www.nebulys.net</a></footer>
+</body>
+</html>

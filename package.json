@@ -1,0 +1,15 @@
+{
+  "name": "4runner-atlas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interactive 4th-generation Toyota 4Runner parts explorer",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "assets": "node scripts/fetch-assets.mjs",
+    "start": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs"
+  }
+}

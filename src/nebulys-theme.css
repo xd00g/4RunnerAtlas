@@ -1,0 +1,31 @@
+@font-face{font-family:Sora;src:url('brand/fonts/sora-600.ttf') format('truetype');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:Inter;src:url('brand/fonts/inter-400.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Inter;src:url('brand/fonts/inter-500.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:Inter;src:url('brand/fonts/inter-600.ttf') format('truetype');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('brand/fonts/jetbrainsmono-400.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('brand/fonts/jetbrainsmono-500.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap}
+:root{
+  color-scheme:dark;
+  --void:#050606;--panel:#0b0e0d;--slate:#141917;--charcoal:#202422;
+  --line:#2a312e;--signal:#39ff14;--circuit:#1c7a34;--amber:#ffc24b;
+  --white:#f4f7f5;--ash:#8a938e;
+  --sora:Sora,system-ui,sans-serif;--inter:Inter,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --ink:var(--white);--muted:#a7b0aa;--accent:var(--signal);--active:#183420;
+  --paper:var(--panel);--stage:var(--slate);--hover:#24332a;--accent-hover:#7aff61;
+  font-family:var(--inter);color:var(--ink);font-synthesis:none;
+}
+html{background:var(--void);-webkit-font-smoothing:antialiased}
+::selection{background:var(--signal);color:var(--void)}
+input{caret-color:var(--signal);accent-color:var(--signal)}
+a{text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+*{scrollbar-width:thin;scrollbar-color:#46534b transparent}
+*::-webkit-scrollbar{width:7px;height:7px}
+*::-webkit-scrollbar-thumb{background:#46534b;border-radius:4px}
+.nebulys-brand{display:flex;align-items:center;gap:12px;color:var(--white);text-decoration:none}
+.nebulys-brand img{display:block;width:32px;height:32px;flex:none;margin:8px 0}
+.nebulys-brand strong{display:block;font-family:var(--sora);font-size:20px;font-weight:600;letter-spacing:-.025em;line-height:1.2}
+.nebulys-brand small,.nebulys-brand .identity-sub{display:block;font-family:var(--mono);font-size:11px;font-weight:400;color:var(--signal);letter-spacing:.04em;margin-top:4px;line-height:1.3}
+
+.site-copyright{flex:none;box-sizing:border-box;width:100%;padding:8px 16px;text-align:center;font-size:11px;line-height:1.5;color:var(--muted,#adb8b3);background:var(--void,#050606);border-top:1px solid var(--line,#26302b)}.site-copyright a{color:inherit;text-decoration:none}.site-copyright a:hover{text-decoration:underline}
