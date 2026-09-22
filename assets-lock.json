@@ -10,7 +10,7 @@
       "bytes": 18871
     },
     "assemblies.json": {
-      "sha256": "e4d723dca8945f1dde4ce18263ec2e46dcabc9fc24b4e2e620942b8020ee44e2",
+      "sha256": "5020e612395615e97fc9c4fdf4121eb41df7bfc8c7200d39f8dcd31060b0a18a",
       "bytes": 56266
     },
     "brake-hydraulics-abs.json": {
@@ -45,13 +45,25 @@
       "sha256": "f61342c61251d48ecb1bb6ce101c345f59c8ad38d67f128c94f018c5b601b4d7",
       "bytes": 17374
     },
+    "electrical-distribution.json": {
+      "sha256": "7ecff340e2622d5afdb706ceab2d7a56e07e83d1c1a51edf2c7ddd37f790842e",
+      "bytes": 20866
+    },
+    "electronic-throttle-body.json": {
+      "sha256": "ce0441468278258f0e69635ca314dd356e549956d345bfff4e5b0ecc62c4a320",
+      "bytes": 14209
+    },
     "engine-assemblies.json": {
-      "sha256": "7d8186d9bf3da98d8148338ebe88238afb9910f351d40ba33a8233b611b03d7a",
+      "sha256": "5c2939e3e7b63558462cc693566b62c13eb8594bf02df2a076f05428ec29942b",
       "bytes": 94191
     },
     "engine-bay-services.json": {
-      "sha256": "d3a8fd37a7e3e090739a9beb8f4082f71870809fb091a33ab94fb0bbc9498166",
+      "sha256": "003fb5e535b8c84913ce8812cc2d992b4ee96ea2e1251107dc0f0a955cb58b09",
       "bytes": 30491
+    },
+    "engine-coolant-circulation.json": {
+      "sha256": "fc5102fe53a6eaae55d02516825c449ccf8e05db64f666abeeac98ac26946618",
+      "bytes": 14629
     },
     "engine-skid.json": {
       "sha256": "bdfa9adb95387b718ef80ee6fea67e52df8a5153d14d0b2ff742dff6ef6ad195",
@@ -64,6 +76,10 @@
     "exhaust-system.json": {
       "sha256": "654e55796c1dfc7e354d75793de7f2982faef51327e652f4b9d4302ccb3b4f5f",
       "bytes": 28358
+    },
+    "factory-lamp-assemblies.json": {
+      "sha256": "f1babd3b1a630b6374bbbb657e267b4153d422ee0a284795c09262d341cc0271",
+      "bytes": 49085
     },
     "front-differential-internals.json": {
       "sha256": "624c80eb15435eb4134067c3e9aea297f168f39b3adb736db0fbc00d45783836",
@@ -101,17 +117,25 @@
       "sha256": "b25b5f0e1581800c36cf89d6173b1b096a7d72217b218c7253c84fb9a310bb8a",
       "bytes": 22753
     },
+    "fuel-rail-injectors.json": {
+      "sha256": "e9ac9a7d0fb4056b28606dd9eea9d08ffe3cad525785b3984342aa80e6b4dec6",
+      "bytes": 26737
+    },
     "fuel-system.json": {
       "sha256": "0613cbc6dbba985d0149f64ee6c8cecc9fd631155cad58dffc21d155c8e87b57",
       "bytes": 16932
+    },
+    "ignition-coils-plugs.json": {
+      "sha256": "d64443866c5865b484a56d3034fa281d435a74759fd47321630eea958c8f9254",
+      "bytes": 34090
     },
     "lighting.json": {
       "sha256": "a9c2be362f41a7f097042de806af945aca4561e78beb8f6df9a7d39c063a9a0f",
       "bytes": 3314
     },
-    "models/4runner-systems.4bfb5766baf03986.glb": {
-      "sha256": "4bfb5766baf039863dab8f13a0cffa1a3a5ff62be0a066c2d8e55e10045fdc44",
-      "bytes": 68132404
+    "models/4runner-systems.4abc5ebbed8e2b7c.glb": {
+      "sha256": "4abc5ebbed8e2b7c67b4463a1327dde712717068f95573a8d9fbc4c8b6a7dc73",
+      "bytes": 75950604
     },
     "models/air-conditioning-front.665363e9d15c668a.glb": {
       "sha256": "665363e9d15c668a8aea92421d4e8704bef86be242baa78ac6975e2a60b79ae4",
@@ -153,13 +177,25 @@
       "sha256": "cb3e8461ee80bb8765f0f6a3323feecf279930e49583629ddaeef18d4a4a5356",
       "bytes": 481640
     },
-    "models/engine-2uzfe.0cd4b093a0774e14.glb": {
-      "sha256": "0cd4b093a0774e14ed1db28de83ba2fae1e7c4c7c65aefce9c2480fc2abe644e",
-      "bytes": 8929040
+    "models/electrical-distribution.7bbeb85537298abd.glb": {
+      "sha256": "7bbeb85537298abd30ca594e8d3c6d101df966a66503b4a1713a68713b13d6b6",
+      "bytes": 481296
     },
-    "models/engine-bay-services.da6d8861672e7a5f.glb": {
-      "sha256": "da6d8861672e7a5fd3068a411bbaa18d594a00a60c59f6c6d52db514cf2e4883",
-      "bytes": 411944
+    "models/electronic-throttle-body.8dce2fb70d61b7c5.glb": {
+      "sha256": "8dce2fb70d61b7c5ef164796592abb2519c4d1fffaa7be135d5fc6d709f2384b",
+      "bytes": 259468
+    },
+    "models/engine-2uzfe.fa42546fb4a2186b.glb": {
+      "sha256": "fa42546fb4a2186b807e87bdabac7efc9a749282dce7089cc94e31ef1242a13b",
+      "bytes": 13360052
+    },
+    "models/engine-bay-services.c258aac9b6d84190.glb": {
+      "sha256": "c258aac9b6d84190feaf61ab81ed49f128150f1160deaf7805d1b9816ca53645",
+      "bytes": 912216
+    },
+    "models/engine-coolant-circulation.1b66f9473a64a84b.glb": {
+      "sha256": "1b66f9473a64a84b4a9592ebfb8b7ac284725109970633d07e758de886bf07ed",
+      "bytes": 403392
     },
     "models/engine-skid.f0df5026b6b446e4.glb": {
       "sha256": "f0df5026b6b446e4db6d32c230f9f9a38aa15ef8e4efd37734262bef5e4e08b2",
@@ -172,6 +208,10 @@
     "models/exhaust-system.073d8d01864cfd3c.glb": {
       "sha256": "073d8d01864cfd3c7a452f3c4b6aafd6d33844bf9caefc325fe8f947de995e76",
       "bytes": 1365644
+    },
+    "models/factory-lamp-assemblies.7e7449b5fe921c44.glb": {
+      "sha256": "7e7449b5fe921c44eee24abb650b798b1969f86d28adfdd09fe098b8e5cf1efe",
+      "bytes": 1295140
     },
     "models/front-differential-internals.e11f2cb5dfc9e0f4.glb": {
       "sha256": "e11f2cb5dfc9e0f4a2fd5fcc2ee99109ec67cf3da22fd71dee46141fd092f192",
@@ -209,9 +249,17 @@
       "sha256": "880e4d791c623ea17ecca945e5bdec4dd998ddaca0f836ca45d06c0a16c6e972",
       "bytes": 478152
     },
+    "models/fuel-rail-injectors.77749a2b7e98bd63.glb": {
+      "sha256": "77749a2b7e98bd63547537fc63dfe6f27386c3a65d49927d30aa4cef5139c991",
+      "bytes": 977604
+    },
     "models/fuel-system.1a77efb11785c812.glb": {
       "sha256": "1a77efb11785c812a1d0ea78f49d005b88c53792ac7e436539514cea65790f49",
       "bytes": 1164192
+    },
+    "models/ignition-coils-plugs.352e80bc2e47817a.glb": {
+      "sha256": "352e80bc2e47817a7cd0335f24c7886b9e7a08e6737780a149d0bb8a8628e8c7",
+      "bytes": 1841732
     },
     "models/lighting.809c42097c2aebd1.glb": {
       "sha256": "809c42097c2aebd183086ae058aaed89a6d8c1275f6fba21a8b5e7d2fabfb030",
@@ -229,9 +277,9 @@
       "sha256": "01928d7d4c8e4ddaf1abc138433f90c5b600c76c3c1e444a5068b598758ffc02",
       "bytes": 614408
     },
-    "models/powertrain-layout.f68f9929f988edb5.glb": {
-      "sha256": "f68f9929f988edb565dc7a1701b879bda4dd3e15e677531cfec886455c492956",
-      "bytes": 13830292
+    "models/powertrain-layout.8c88d88dfec4820e.glb": {
+      "sha256": "8c88d88dfec4820e1c27803542977de94e6b25f9ba6929d6d81c64b4bd12eca4",
+      "bytes": 18794676
     },
     "models/rear-axle.359f95f191addb38.glb": {
       "sha256": "359f95f191addb382fec21803600f7e2eedbdbb2f5b766f1a3672fa00362d366",
@@ -257,17 +305,29 @@
       "sha256": "29def7a89f2341495273588378b67353cb69a0462882cecca1c77e3cb1d41d5d",
       "bytes": 1377660
     },
+    "models/secondary-air-injection.a42381d3076c99dc.glb": {
+      "sha256": "a42381d3076c99dcba7bf8f0035bf866c8b4ce0a73166f665a856075a462946d",
+      "bytes": 360332
+    },
     "models/starter-internals.bb623c68542cad57.glb": {
       "sha256": "bb623c68542cad57439f660477e0ba275ecb65736e6c44d35535aaf1f6a6f801",
       "bytes": 623024
     },
-    "models/steering-system.ff0640c4d9b4978b.glb": {
-      "sha256": "ff0640c4d9b4978b1fa4e6c50d2be7974ca4df202ac07db74ae597bffd24de59",
-      "bytes": 755012
+    "models/steering-rack-internals.25dc6a2b2a9a6239.glb": {
+      "sha256": "25dc6a2b2a9a623919d4bf2df6342d6f2b776a8d30e68693599bfed177cfe803",
+      "bytes": 1018208
+    },
+    "models/steering-system.35044081e7b7eeb5.glb": {
+      "sha256": "35044081e7b7eeb5c5eb0e98cd98539520616ccd7f99e344cc6a462af744df49",
+      "bytes": 1796200
     },
     "models/tailgate-components.32b4fa8b2b4430c3.glb": {
       "sha256": "32b4fa8b2b4430c3c38e5b2e41b299cd5512f79b5a8169665706ac157dfd26dc",
       "bytes": 2332708
+    },
+    "models/timing-vvti.2d8dc7789ba0915b.glb": {
+      "sha256": "2d8dc7789ba0915b77e3855d9661d74017841fcc32979fd3b73e02c8f55d3d1f",
+      "bytes": 462928
     },
     "models/transfer-case-system.700ebde98dc534e3.glb": {
       "sha256": "700ebde98dc534e3cdbe22cbb08907f93d68d22dad99f17e3faf38152c479a2c",
@@ -277,9 +337,13 @@
       "sha256": "f1ec3d823290c3a733d1c676fefe72fe9d07ac4dd82cb8215a89f545f1a2e873",
       "bytes": 4119960
     },
-    "models/transmission-system.a9ec69734e88f2de.glb": {
-      "sha256": "a9ec69734e88f2de6b3123df692896611370fc78b204afa50ad829cdd167d7af",
-      "bytes": 697372
+    "models/transmission-system.6a527ee8a2790dd8.glb": {
+      "sha256": "6a527ee8a2790dd8a12bcdf1b6cb97aff2cc50dbe8cc0517500a6d1d6cea57da",
+      "bytes": 1228136
+    },
+    "models/transmission-valve-body.1689a60b492fc225.glb": {
+      "sha256": "1689a60b492fc225dc5ad3bde7e18415c1073beb687883506b4615ba94fba5d2",
+      "bytes": 506608
     },
     "models/volant-18747-intake.0f409b95dfc7263f.glb": {
       "sha256": "0f409b95dfc7263f6b752dc0a9f5a0a934976acac5a1ce84e0a47122542cd806",
@@ -318,15 +382,15 @@
       "bytes": 17616
     },
     "part-cards.json": {
-      "sha256": "48c0857c4af0f3c978762e8074f47602a8476bc5d87d95c9a47048de8ac13ed5",
-      "bytes": 384936
+      "sha256": "38566b91063635f246440d4b350c854836cb249d76abd2fdc0fa54202e95b6f2",
+      "bytes": 467831
     },
     "power-steering-pump.json": {
       "sha256": "a694fddb35ca93ac372efdcd578438db9cc3c983856c652aefb3bffb6c569e13",
       "bytes": 25600
     },
     "powertrain-layout.json": {
-      "sha256": "833af0d9e6eefbaec72e6f3b520c912db817a796ee13962b9392c182fe2a6064",
+      "sha256": "fcfdde0ebdfcca7eacea2d8c091229abe25e33460f55d8e55d6ebfbcf4972ce3",
       "bytes": 246298
     },
     "rear-axle.json": {
@@ -354,8 +418,12 @@
       "bytes": 13008
     },
     "scopes.json": {
-      "sha256": "e046aa0ce17a81341fa55b2ec2321435a2a4967b28a5a439821e9ae9217aa276",
-      "bytes": 29019
+      "sha256": "de1d5891eddeb5d5650c8732150b2f7981a4e8dbd0344ca6b0e8d56f554ae5bb",
+      "bytes": 36919
+    },
+    "secondary-air-injection.json": {
+      "sha256": "84ae512c1d99d018157a8b54e4430ef5971e829f36fb61c5a49d72c67404121b",
+      "bytes": 21593
     },
     "site-config.json": {
       "sha256": "5fbcca6d2b03bf791f78ed0a5e612981aad82e483111325255f1bb946fd04193",
@@ -365,13 +433,21 @@
       "sha256": "41331bbc5054db4ea4ef96cb463b095f9360dafc2cbc33f6773f12e8cf567db7",
       "bytes": 20861
     },
+    "steering-rack-internals.json": {
+      "sha256": "8a2d945ded0b5846fb37f4eca6b51a5d60fe433ffc88c61f7fac006756b3b282",
+      "bytes": 25700
+    },
     "steering-system.json": {
-      "sha256": "925468d6abbbb890d262b532d082e4e82b4c6d0c754568f44ce88cacc0a936b1",
+      "sha256": "cf0bc86a193a7799d2bd033d2c232769e33522680236c14d961b6e52d1aba73b",
       "bytes": 14262
     },
     "tailgate-components.json": {
       "sha256": "cc626714cde32730087f7ddc6eeb418caf52c2deb1edcadd29bf2d50b6eabad1",
       "bytes": 18673
+    },
+    "timing-vvti.json": {
+      "sha256": "f8335fa3fe765018f6103b129b27af3c0776599136690c4bec0a8fc0a72bc38d",
+      "bytes": 22070
     },
     "transfer-case-system.json": {
       "sha256": "b0d17cf3af5a292a0c6c23cc84b733e5cf67f7d059b1419f78c28d31c2418df4",
@@ -382,8 +458,12 @@
       "bytes": 28503
     },
     "transmission-system.json": {
-      "sha256": "6aef2c1db133d3b9cc798d9c57631fa8d9144dc30aacb3b85f09889fdcf7d490",
+      "sha256": "d68b6975acfd79a1f00c25d8c10ae4edf05b974b28a1437cf52162d6acc32829",
       "bytes": 23037
+    },
+    "transmission-valve-body.json": {
+      "sha256": "dd07b92f6bf72139eca02674c10acf144a4fb76703c2ca115c34b8cc6e670fd3",
+      "bytes": 25946
     },
     "volant-18747-intake.json": {
       "sha256": "c813ab5a5f7a8ccd6d2de0985bb667af4b3bd03a0d180b5009e66d936549950e",
