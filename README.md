@@ -4,7 +4,7 @@ An interactive parts explorer for a 2005 Toyota 4Runner Sport 4WD V8, by [Nebuly
 
 [Open the live viewer](https://4runner.nebulys.net/)
 
-Select, isolate and explode vehicle systems, switch between spatial and grid layouts, and inspect component descriptions and qualified part-number references. Includes night lighting and an illustrative engine animation. Current coverage: 59 views and 646 documented component records.
+Select, isolate and explode vehicle systems, switch between spatial and grid layouts, and inspect component descriptions and qualified part-number references. Includes night lighting and an illustrative engine animation. Current coverage: 64 views and 729 documented component records.
 
 ## Run locally
 
@@ -17,7 +17,7 @@ npm start
 
 Open http://127.0.0.1:8795/. Set `PORT` to use another port.
 
-The first command downloads only the public viewer catalogs and GLB models from the live site, checks their locked SHA-256 hashes, and stores them in the ignored `data/` directory. The models total about 174 MB before HTTP compression. Models are distributed separately to keep this repository focused on application source. If the live assets change, use a matching asset lock and source release; mismatched files are rejected.
+The first command downloads only the public viewer catalogs and GLB models from the live site, checks their locked SHA-256 hashes, and stores them in the ignored `data/` directory. The models total about 183.3 MB before HTTP compression. Models are distributed separately to keep this repository focused on application source. If the live assets change, use a matching asset lock and source release; mismatched files are rejected.
 
 To produce static files for another web server:
 
