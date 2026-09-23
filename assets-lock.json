@@ -5,6 +5,10 @@
       "sha256": "cac655ce3b4b6fc059db0fc2f925ef92ac7d318d0520bb6ec9b14109fc77c2da",
       "bytes": 11850
     },
+    "accessory-drive-hardware.json": {
+      "sha256": "7875e59e00a31bfa295c8dda86927a67865ecafe4a985b8d20a78c5e10bcd29b",
+      "bytes": 5173
+    },
     "air-conditioning-front.json": {
       "sha256": "a12981524c49e728d63cb768e7ac0b3a1c0aaa1f03a518ba621fec0177afe730",
       "bytes": 8359
@@ -14,8 +18,8 @@
       "bytes": 18871
     },
     "assemblies.json": {
-      "sha256": "050d9def2a384c0d5feafaa9a7c90817c278b09876e9df6aa9e2db3793fd489b",
-      "bytes": 56397
+      "sha256": "f05f152ef3055badc22d763415d8d41678369cfd8a685af3969d2ae74b2d2189",
+      "bytes": 56634
     },
     "brake-hydraulics-abs.json": {
       "sha256": "e4e52ec7ede9f68a5ea25ba4ff45aec902f0128dc2f35b5ca0b16ff5b0916412",
@@ -34,27 +38,39 @@
       "bytes": 12039
     },
     "cabin-interior.json": {
-      "sha256": "fdf5bfedc443613c24b7ad3ec9db835a977d2ee9ad732566e0bce817974c05d8",
-      "bytes": 51065
+      "sha256": "c1c6a016284a8ec7f65f435ebb0df01b307f66239d5dbf4697e6aaa2a95143cc",
+      "bytes": 51108
     },
     "cooling-system.json": {
       "sha256": "b3f19638f0aeb8b76ef337061041d2e8377fe6f527ca5e662bd7946f1dc8c527",
       "bytes": 17263
     },
+    "crankshaft-support-seals.json": {
+      "sha256": "b0c0bb3677c768db393d86736c540c633626ea5e0d6ae3336bbe3fc42dc9ea03",
+      "bytes": 5218
+    },
+    "cylinder-head-valvetrain.json": {
+      "sha256": "be2cf4a082324f77ec086369098ee9929ace0096a1cdf9aa0cdbffca052bd044",
+      "bytes": 11453
+    },
     "door-left-front-components.json": {
-      "sha256": "a008062eac3de957ac3c822343328bafcf7132cb1deec1fdd3cb216b36e33886",
-      "bytes": 18465
+      "sha256": "194bb2de5efe8ae3bb88bf278343b5c0aa9b90f309a523e70646846ed94790fd",
+      "bytes": 18550
     },
     "door-left-rear-components.json": {
-      "sha256": "f76da9a75fe3df635b3e50935f36bb83a53f01960828822644e0348e1d59c97c",
-      "bytes": 17230
+      "sha256": "b30fa17588b18c17fe0ca3c32fd905a9a2057c33f1f83828ffb9f9332a5581a2",
+      "bytes": 17274
+    },
+    "door-lock-linkages.json": {
+      "sha256": "d50598c6373c5d161ecfcb38fdcdc99cfb11847a2662dc7ff3e49784db981918",
+      "bytes": 3497
     },
     "door-right-front-components.json": {
-      "sha256": "d08c6040cd4faba21e8a9e6f8956d5231a37e97a6ccc5aadb9f005a0f6e1fafd",
+      "sha256": "cee57d6110d6a71af8410574384509a741c9bc993130ff359eccd8a680dfd0a1",
       "bytes": 18620
     },
     "door-right-rear-components.json": {
-      "sha256": "f61342c61251d48ecb1bb6ce101c345f59c8ad38d67f128c94f018c5b601b4d7",
+      "sha256": "1f077f019eb7cd954345af9c1a27a35e40472cb643eed84e860dd0715c4311fa",
       "bytes": 17374
     },
     "electrical-distribution.json": {
@@ -66,8 +82,8 @@
       "bytes": 14209
     },
     "engine-assemblies.json": {
-      "sha256": "a68820c3b59ed5adbd534a677f6b0a8bf1f619843434a13209903bd09dd16f5c",
-      "bytes": 95399
+      "sha256": "735116ddffd768912f26e2fc7046fa0a262c5ad42617193c343ebc9829c99419",
+      "bytes": 111392
     },
     "engine-bay-services.json": {
       "sha256": "003fb5e535b8c84913ce8812cc2d992b4ee96ea2e1251107dc0f0a955cb58b09",
@@ -137,6 +153,10 @@
       "sha256": "5a10e8a6120f6f24d6d8e6785b2e325d9c1de6c11734a2187dcfdf334b795e34",
       "bytes": 39084
     },
+    "front-window-mechanisms.json": {
+      "sha256": "20fc5a167ae2edd18dfbe0e8cf25bcd356e063325e67ece15fbd9a44c8d5b545",
+      "bytes": 3564
+    },
     "fuel-pump-module.json": {
       "sha256": "b25b5f0e1581800c36cf89d6173b1b096a7d72217b218c7253c84fb9a310bb8a",
       "bytes": 22753
@@ -157,13 +177,17 @@
       "sha256": "a9c2be362f41a7f097042de806af945aca4561e78beb8f6df9a7d39c063a9a0f",
       "bytes": 3314
     },
-    "models/4runner-systems.3781ce3e3878f283.glb": {
-      "sha256": "3781ce3e3878f28332287c93a212ac67a8ffd2041c0c31d5a9b3a817346b95a0",
-      "bytes": 80263384
+    "models/4runner-systems.bf9637b4c7e1fa10.glb": {
+      "sha256": "bf9637b4c7e1fa1089fb103a2f4663bf81285f1716ce12c1d4379436c6a04e2c",
+      "bytes": 84917224
     },
     "models/ac-compressor-clutch.6cb62527fa314b73.glb": {
       "sha256": "6cb62527fa314b736f23b4ab063ba10ace3aae7c3566d0468aaf16ce1a416c58",
       "bytes": 585184
+    },
+    "models/accessory-drive-hardware.be95952ead496d21.glb": {
+      "sha256": "be95952ead496d21050a11b6677798a730f4b961a293ceecacda92dcde9bbf0a",
+      "bytes": 71336
     },
     "models/air-conditioning-front.665363e9d15c668a.glb": {
       "sha256": "665363e9d15c668a8aea92421d4e8704bef86be242baa78ac6975e2a60b79ae4",
@@ -189,29 +213,41 @@
       "sha256": "c7a308609ac63313d5b1df1ea138a74078aaf3e81e1368f7e8103fe1e2508fe7",
       "bytes": 84360
     },
-    "models/cabin-interior.223ff9a065ee7800.glb": {
-      "sha256": "223ff9a065ee78003510fb3d3583438214296376c11d4f973b6b4a99c83736e2",
-      "bytes": 5709292
+    "models/cabin-interior.2b1f94fa327145f9.glb": {
+      "sha256": "2b1f94fa327145f9aa413173ef1e38c6aa2c72a1a5964280022602937d354562",
+      "bytes": 5758384
     },
     "models/cooling-system.1b6907ec06a45491.glb": {
       "sha256": "1b6907ec06a454913cd8c22c9f93515a001e3cee6926e533bcbfa012a248b111",
       "bytes": 726876
     },
-    "models/door-left-front-components.e2880ee92e4323dd.glb": {
-      "sha256": "e2880ee92e4323dd16fdda9b7a09dbe9513cf0ce8c696cdcb8dae47a7cd57f16",
-      "bytes": 841604
+    "models/crankshaft-support-seals.47b0f8c132b4104e.glb": {
+      "sha256": "47b0f8c132b4104eea5ce652371d7aa4f83e131b1ccb36b222f66c1f8929bcf7",
+      "bytes": 318924
     },
-    "models/door-left-rear-components.146db23e7576842b.glb": {
-      "sha256": "146db23e7576842bef2c5a46b35a11686dbad4a8bf395fe51daffa9d72a103f1",
-      "bytes": 487256
+    "models/cylinder-head-valvetrain.0bc9f461d3658af9.glb": {
+      "sha256": "0bc9f461d3658af9c41f71e8fd257359d8478de8eab2146b979bdbe9b60bd46f",
+      "bytes": 2798272
     },
-    "models/door-right-front-components.f41c563b53065426.glb": {
-      "sha256": "f41c563b53065426ea2ac9c8f7d63c99cb7cb3f86c842a4964c2ee75b4e0ce17",
-      "bytes": 796468
+    "models/door-left-front-components.69d7d9b15d22cdc7.glb": {
+      "sha256": "69d7d9b15d22cdc721c751c7bd7f5e3dc066f09f100b0033b3eb5951682f8d1e",
+      "bytes": 1065020
     },
-    "models/door-right-rear-components.cb3e8461ee80bb87.glb": {
-      "sha256": "cb3e8461ee80bb8765f0f6a3323feecf279930e49583629ddaeef18d4a4a5356",
-      "bytes": 481640
+    "models/door-left-rear-components.a1e89c2a69a31a6c.glb": {
+      "sha256": "a1e89c2a69a31a6c9fa11cee56528c6f220d229bc52db7e0e27daf691ded32ea",
+      "bytes": 710524
+    },
+    "models/door-lock-linkages.bab2016f17fcbeed.glb": {
+      "sha256": "bab2016f17fcbeed291523ed8f6cf38269ac5256b36bfe603aa6226edc0296b3",
+      "bytes": 145312
+    },
+    "models/door-right-front-components.680d59d62a76f19f.glb": {
+      "sha256": "680d59d62a76f19fee18a715896c40b9e2702d647609fb1a5afcada36349eb3f",
+      "bytes": 1019972
+    },
+    "models/door-right-rear-components.ed935ad7bbd2b8aa.glb": {
+      "sha256": "ed935ad7bbd2b8aaa86d1fd7e257e3e75ea6d5f7230539250ffc20d263be2961",
+      "bytes": 704992
     },
     "models/electrical-distribution.7bbeb85537298abd.glb": {
       "sha256": "7bbeb85537298abd30ca594e8d3c6d101df966a66503b4a1713a68713b13d6b6",
@@ -221,9 +257,9 @@
       "sha256": "8dce2fb70d61b7c5ef164796592abb2519c4d1fffaa7be135d5fc6d709f2384b",
       "bytes": 259468
     },
-    "models/engine-2uzfe.793a818561f81b9e.glb": {
-      "sha256": "793a818561f81b9e1da33d6e1a6f272e6a45a7912fe4aa92961b0374dc990dbd",
-      "bytes": 13957124
+    "models/engine-2uzfe.23eef1a5c3288d64.glb": {
+      "sha256": "23eef1a5c3288d64a99ee57e879ef22f95170c30a8dcba5c8ff982de853f08c2",
+      "bytes": 18069632
     },
     "models/engine-bay-services.c258aac9b6d84190.glb": {
       "sha256": "c258aac9b6d84190feaf61ab81ed49f128150f1160deaf7805d1b9816ca53645",
@@ -293,6 +329,10 @@
       "sha256": "82a3901902ca4eefcd433f97636215189df3deb9a75640c4b9d7abe77d0bc701",
       "bytes": 260260
     },
+    "models/front-window-mechanisms.b945f53a65802223.glb": {
+      "sha256": "b945f53a65802223a797469c8482e41f568cac243ee83415c1022571f22eea78",
+      "bytes": 71832
+    },
     "models/fuel-pump-module.880e4d791c623ea1.glb": {
       "sha256": "880e4d791c623ea17ecca945e5bdec4dd998ddaca0f836ca45d06c0a16c6e972",
       "bytes": 478152
@@ -313,6 +353,10 @@
       "sha256": "809c42097c2aebd183086ae058aaed89a6d8c1275f6fba21a8b5e7d2fabfb030",
       "bytes": 168920
     },
+    "models/oil-pan-pickup.9bed0b484196e08b.glb": {
+      "sha256": "9bed0b484196e08b7402f49add314da823c735f86d574b4c5647b63881431141",
+      "bytes": 325304
+    },
     "models/oil-pump-internals.a86bb163c6e98fb4.glb": {
       "sha256": "a86bb163c6e98fb470c49ff9191dde34afaf22682de8b04a824f38b69e309d72",
       "bytes": 336104
@@ -321,13 +365,17 @@
       "sha256": "951f6754c4dfeed40a35db256a3e730492aab49e398fbee9c3722476243411fd",
       "bytes": 199632
     },
+    "models/piston-rod-rings.726b386d2d473fb0.glb": {
+      "sha256": "726b386d2d473fb039b3537e3714f29bbd51d54f83909ea425743aeedbf33830",
+      "bytes": 497696
+    },
     "models/power-steering-pump.01928d7d4c8e4dda.glb": {
       "sha256": "01928d7d4c8e4ddaf1abc138433f90c5b600c76c3c1e444a5068b598758ffc02",
       "bytes": 614408
     },
-    "models/powertrain-layout.594c3129842d5ba4.glb": {
-      "sha256": "594c3129842d5ba4e468d2a32449e84c2ef74e0ca5c64aa69594cb85ff05a4ce",
-      "bytes": 19391832
+    "models/powertrain-layout.eadb3b120e00c9d6.glb": {
+      "sha256": "eadb3b120e00c9d661d5e38fa93739565b1a1c87abf80031a028f0d246f9fe62",
+      "bytes": 23509216
     },
     "models/rear-axle-bearing-stack.812749aa46cf1107.glb": {
       "sha256": "812749aa46cf11072222d76e998b64fdec80d76e813f484fc233a717f239957c",
@@ -365,6 +413,14 @@
       "sha256": "e9944d93a80f741cf43716124eabcc6042eced83e6cdf310166a9071c531838f",
       "bytes": 2138272
     },
+    "models/rear-window-mechanisms.16d0039f7bfe6da2.glb": {
+      "sha256": "16d0039f7bfe6da23e507823a9f75abd1ab3634aa7498b8936d33e891f943c18",
+      "bytes": 71820
+    },
+    "models/seat-track-mechanisms.bfa32e867ff102cb.glb": {
+      "sha256": "bfa32e867ff102cbebadde016464330cd86fdf1fb8442cdb21382b42ef49265a",
+      "bytes": 43196
+    },
     "models/secondary-air-injection.a42381d3076c99dc.glb": {
       "sha256": "a42381d3076c99dcba7bf8f0035bf866c8b4ce0a73166f665a856075a462946d",
       "bytes": 360332
@@ -385,9 +441,13 @@
       "sha256": "88e3004104abaab6082e1d81cc8aeba16e9b94ad87d909351eee8dc0ea836446",
       "bytes": 2021524
     },
-    "models/tailgate-components.32b4fa8b2b4430c3.glb": {
-      "sha256": "32b4fa8b2b4430c3c38e5b2e41b299cd5512f79b5a8169665706ac157dfd26dc",
-      "bytes": 2332708
+    "models/tailgate-components.986f027cfffd60fa.glb": {
+      "sha256": "986f027cfffd60fa2bc37462b35c593297d21491e5aed5f296c3557d2687faf8",
+      "bytes": 2511336
+    },
+    "models/tailgate-window-latch.5b595baf5f4948ae.glb": {
+      "sha256": "5b595baf5f4948ae2dc6539473e68c847691f7574afc726b04c81a6400b7b796",
+      "bytes": 172424
     },
     "models/timing-vvti.2d8dc7789ba0915b.glb": {
       "sha256": "2d8dc7789ba0915b77e3855d9661d74017841fcc32979fd3b73e02c8f55d3d1f",
@@ -437,6 +497,10 @@
       "sha256": "0dedffe1063ed46ec27606233b10351e15c0ce7a8e315573d54117d2094a5133",
       "bytes": 64350
     },
+    "oil-pan-pickup.json": {
+      "sha256": "e9707a0145b3273aef410a9e05f1be2e628fcbaba84d37f544242edb4f2ed214",
+      "bytes": 2865
+    },
     "oil-pump-internals.json": {
       "sha256": "249e37fea58688513dba3ba570d25e6f46433ee21b1c6a2d0445ae571118e3ea",
       "bytes": 16738
@@ -446,16 +510,20 @@
       "bytes": 17616
     },
     "part-cards.json": {
-      "sha256": "1043b6d973e690136e191eebe680513867549bb1bf337e22c3cdd5e97a601e81",
-      "bytes": 555941
+      "sha256": "b9d069c95c75782d28de1bc5692f2d94723fd7f1e9d28a8c17c62a8dbc1752b7",
+      "bytes": 563144
+    },
+    "piston-rod-rings.json": {
+      "sha256": "64b71cccbb116b42d1fbc2816208cf88646b24f1bea24a593abf5489ff68f47c",
+      "bytes": 5982
     },
     "power-steering-pump.json": {
       "sha256": "a694fddb35ca93ac372efdcd578438db9cc3c983856c652aefb3bffb6c569e13",
       "bytes": 25600
     },
     "powertrain-layout.json": {
-      "sha256": "e0045845d480dd6262c110ad922c5735f2b2348120d72bc919b41fa17fa6aa10",
-      "bytes": 247538
+      "sha256": "5c09ec0d9934eee61f1e0ca6809ecc7f1a58e06c38d0afd051c8fc6f9614e117",
+      "bytes": 264755
     },
     "rear-axle-bearing-stack.json": {
       "sha256": "cd285ed1624c2badca51e843442b555e01dc3e0889c6aa52f64e730da7314850",
@@ -493,9 +561,17 @@
       "sha256": "b9a17b126344043ea3a7f791f063c8dfd09b2cbb5016a839b6c1c80657a55992",
       "bytes": 13008
     },
+    "rear-window-mechanisms.json": {
+      "sha256": "957e67f9acad5b8315d7c3d1214c662e5cdf8a846d97f982f6d7987367a0589b",
+      "bytes": 3519
+    },
     "scopes.json": {
-      "sha256": "84dac5164acb2b8ff330ff94c5532ac12b8973b091f371a89d878ac88d16677d",
-      "bytes": 46278
+      "sha256": "346f42f46b06e3cf418f0b8c760440977f9004c070ab401279e1de30f0a85183",
+      "bytes": 52349
+    },
+    "seat-track-mechanisms.json": {
+      "sha256": "ba26e6d23f9dbee90884e55640c1c8ee50bde092b3b9d1376c27379ad4998b47",
+      "bytes": 1913
     },
     "secondary-air-injection.json": {
       "sha256": "84ae512c1d99d018157a8b54e4430ef5971e829f36fb61c5a49d72c67404121b",
@@ -522,8 +598,12 @@
       "bytes": 14262
     },
     "tailgate-components.json": {
-      "sha256": "cc626714cde32730087f7ddc6eeb418caf52c2deb1edcadd29bf2d50b6eabad1",
-      "bytes": 18673
+      "sha256": "e53bc689f986bed82a6a0ceeb2fff46f7f2dcaf87e3204c021911bf9f4d9624a",
+      "bytes": 18716
+    },
+    "tailgate-window-latch.json": {
+      "sha256": "adc05678934cd0cae5f63b9a23d185951a8c5c64acc5df5b7f13d3ba21b61f34",
+      "bytes": 2611
     },
     "timing-vvti.json": {
       "sha256": "f8335fa3fe765018f6103b129b27af3c0776599136690c4bec0a8fc0a72bc38d",
