@@ -82,7 +82,7 @@ export function createEngineMotion(panel, {appearanceChanged, announce}) {
       sync();
     },
     setAvailable(value) {value=active&&value;if(value===allowed)return;allowed=value;if(!value)reset({clearReveal:true});sync();},
-    tick(dt) {if(!playing||!allowed||document.hidden)return;angle=(angle+dt*Math.PI/2*Number(speed.value))%(TAU*2);apply();sync();},
+    tick(dt) {if(!playing||!allowed||document.hidden)return false;angle=(angle+dt*Math.PI/2*Number(speed.value))%(TAU*2);apply();sync();return true;},
     reset,
     leave() {reset({clearReveal:true});active=false;allowed=false;sync();},
     isGhost(id) {return active&&reveal&&!opaque.has(id)&&!id.includes('-piston-rod-')&&!id.endsWith('-camshaft');}

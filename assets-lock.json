@@ -18,7 +18,7 @@
       "bytes": 18871
     },
     "assemblies.json": {
-      "sha256": "f05f152ef3055badc22d763415d8d41678369cfd8a685af3969d2ae74b2d2189",
+      "sha256": "c60dfe1c97ebe7dcd3c6aa1bac93e7491c01b3c41c7820231da0daa77bbf1aba",
       "bytes": 56634
     },
     "brake-hydraulics-abs.json": {
@@ -177,9 +177,9 @@
       "sha256": "a9c2be362f41a7f097042de806af945aca4561e78beb8f6df9a7d39c063a9a0f",
       "bytes": 3314
     },
-    "models/4runner-systems.bf9637b4c7e1fa10.glb": {
-      "sha256": "bf9637b4c7e1fa1089fb103a2f4663bf81285f1716ce12c1d4379436c6a04e2c",
-      "bytes": 84917224
+    "models/4runner-systems.be9bc91acd473800.glb": {
+      "sha256": "be9bc91acd4738004a4421980375b328903fd960c3fe746c3638aaaa0f4871cf",
+      "bytes": 84917260
     },
     "models/ac-compressor-clutch.6cb62527fa314b73.glb": {
       "sha256": "6cb62527fa314b736f23b4ab063ba10ace3aae7c3566d0468aaf16ce1a416c58",
@@ -373,9 +373,9 @@
       "sha256": "01928d7d4c8e4ddaf1abc138433f90c5b600c76c3c1e444a5068b598758ffc02",
       "bytes": 614408
     },
-    "models/powertrain-layout.eadb3b120e00c9d6.glb": {
-      "sha256": "eadb3b120e00c9d661d5e38fa93739565b1a1c87abf80031a028f0d246f9fe62",
-      "bytes": 23509216
+    "models/powertrain-layout.13c6980ec71da0f1.glb": {
+      "sha256": "13c6980ec71da0f1fb9620b872a2096c7a55794ae47bf97d4d0c7dccda0af44e",
+      "bytes": 23509252
     },
     "models/rear-axle-bearing-stack.812749aa46cf1107.glb": {
       "sha256": "812749aa46cf11072222d76e998b64fdec80d76e813f484fc233a717f239957c",
@@ -522,7 +522,7 @@
       "bytes": 25600
     },
     "powertrain-layout.json": {
-      "sha256": "5c09ec0d9934eee61f1e0ca6809ecc7f1a58e06c38d0afd051c8fc6f9614e117",
+      "sha256": "459722bd88b29b5908722dc8d0ed735fec53d0c95e7baf24b46bdb91d6ff57cd",
       "bytes": 264755
     },
     "rear-axle-bearing-stack.json": {
@@ -566,7 +566,7 @@
       "bytes": 3519
     },
     "scopes.json": {
-      "sha256": "346f42f46b06e3cf418f0b8c760440977f9004c070ab401279e1de30f0a85183",
+      "sha256": "fa010c7cd9fab6fb68aba0bd7731fe8b3dda56c864fca8b00f68791cf5ce2e3b",
       "bytes": 52349
     },
     "seat-track-mechanisms.json": {

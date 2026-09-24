@@ -68,7 +68,9 @@ controls.maxDistance=30;
 controls.target.set(0,.8,0);
 controls.maxPolarAngle=Math.PI*.94;
 const nightView=createNightView(scene);
-let manifest,model,cameraMove=null,lastTime=0;
+let manifest,model,cameraMove=null,lastTime=0,needsRender=true;
+controls.addEventListener('change',()=>{needsRender=true;});
+renderer.domElement.addEventListener('webglcontextrestored',()=>{needsRender=true;});
 const raycaster=new Raycaster();
 const pointer=new Vector2();
 const labels=new Map();
@@ -77,6 +79,7 @@ let systems=[];
 const emptySelection=$('#selection').innerHTML;
 function announce(text){$('#announcement').textContent=text;}
 const engineMotion=createEngineMotion($('#engine-motion'),{appearanceChanged:()=>{if(state.ready)updateAppearance();},announce});
+for(const [id,event] of [['engine-angle','input'],['engine-motion-reset','click']])$('#'+id).addEventListener(event,()=>{needsRender=true;});
 function permitted(p){return p.configuration!=='4wd'||state.configuration!=='2wd';}
 function visible(p){return permitted(p)&&!state.hidden.has(p.id)&&(!state.isolate||state.selection===p.id);}
 function candidates(){return manifest.assemblies.filter(permitted);}
@@ -192,6 +195,7 @@ function updateSelection(){
 }
 function assembledExteriorView(){return scope==='vehicle'&&state.amount===0&&state.explosion===0&&state.layout==='spatial'&&!state.selection&&!state.xray&&!state.isolate&&state.hidden.size===0;}
 function updateAppearance(){
+  needsRender=true;
   $('#mobile-configuration').textContent=isDetail()?'Component groups · Approximate geometry':state.configuration==='2wd'?'2WD comparison · Fitment unverified':'VIN-confirmed 4WD · Approximate geometry';
   const chassisActive=scope==='vehicle'&&!state.isolate&&manifest.assemblies.every(p=>visible(p)===(permitted(p)&&chassisOwners.has(p.id)));
   let count=0;
@@ -251,6 +255,7 @@ async function navigatePart(entry){
 function toggleIsolation(){if(!state.selection)return;state.isolate=!state.isolate;state.hidden.delete(state.selection);updateAppearance();fitVisible();announce(state.isolate?`Selected ${noun()} isolated.`:`All unhidden ${plural()} restored to view.`);}
 function toggleHidden(){if(!state.selection)return;const id=state.selection;if(state.hidden.has(id)){state.hidden.delete(id);updateAppearance();}else {state.hidden.add(id);selectPart(null);}announce(`${assemblies.get(id).record.name} ${state.hidden.has(id)?'hidden':'shown'}.`);}
 function setPositions(amount){
+  needsRender=true;
   for(const a of assemblies.values())a.object.position.copy(a.rest).addScaledVector(a.offset,amount*(1-state.grid)).addScaledVector(a.gridOffset,amount*state.grid);
   const conceal=assembledExteriorView();
   for(const a of assemblies.values())for(const mesh of a.meshes)if(mesh.userData.hideInAssembledExterior)mesh.visible=!conceal;
@@ -325,7 +330,7 @@ viewport.addEventListener('pointerup',e=>{
   if(hits.length)selectPart(hits[0].object.userData.assemblyId);else selectPart(null);
 });
 viewport.addEventListener('wheel',()=>{cameraMove=null;},{passive:true});
-new ResizeObserver(()=>{const w=viewport.clientWidth,h=viewport.clientHeight;if(!w||!h)return;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();if(state.ready)fitVisible();}).observe(viewport);
+new ResizeObserver(()=>{const w=viewport.clientWidth,h=viewport.clientHeight;if(!w||!h)return;renderer.setSize(w,h);needsRender=true;camera.aspect=w/h;camera.updateProjectionMatrix();if(state.ready)fitVisible();}).observe(viewport);
 $('#search').addEventListener('input',e=>{state.search=e.target.value;updateList();});
 $('#search').addEventListener('keydown',e=>{if(e.key==='Enter'){const first=$('#part-list button');if(first){e.preventDefault();first.click();}}});
 $('#search-area').addEventListener('change',e=>{state.searchArea=e.target.value;updateList();});
@@ -421,9 +426,39 @@ async function loadDataset(next){
   setupSystemGrid(entries);
   return {manifest:data,model:root,assemblies:entries};
 }
+// Keep only a few parsed scenes. The network cache is separately bounded, but
+// retaining every decoded GLTF would accumulate geometry and GPU resources as
+// a reader visits the 79 studies.
+const datasetLimit=3;
+function disposeDataset(dataset){
+  const geometries=new Set(),materials=new Set(),textures=new Set();
+  dataset.model.traverse(object=>{
+    if(!object.isMesh)return;
+    if(object.geometry)geometries.add(object.geometry);
+    for(const material of Array.isArray(object.material)?object.material:[object.material])if(material){
+      materials.add(material);
+      for(const value of Object.values(material))if(value?.isTexture)textures.add(value);
+    }
+  });
+  for(const geometry of geometries)geometry.dispose();
+  for(const material of materials)material.dispose();
+  for(const texture of textures)texture.dispose();
+}
+function trimDatasets(){
+  for(const [id,entry] of datasets){
+    if(datasets.size<=datasetLimit)break;
+    // An in-flight route and the currently displayed scene still own their data.
+    if(id===scope||id===requestedScope||!entry.loaded)continue;
+    datasets.delete(id);disposeDataset(entry.loaded);
+  }
+}
 function getDataset(next){
-  if(!datasets.has(next)){const pending=loadDataset(next).catch(error=>{datasets.delete(next);throw error;});datasets.set(next,pending);}
-  return datasets.get(next);
+  let entry=datasets.get(next);
+  if(entry){datasets.delete(next);datasets.set(next,entry);return entry.promise;}
+  entry={loaded:null,promise:null};
+  entry.promise=loadDataset(next).then(loaded=>{entry.loaded=loaded;trimDatasets();return loaded;}).catch(error=>{if(datasets.get(next)===entry)datasets.delete(next);throw error;});
+  datasets.set(next,entry);
+  return entry.promise;
 }
 function captureScope(){
   if(!scope||!state.ready)return;
@@ -503,7 +538,7 @@ async function switchScope(next,{historyMode='push'}={}){
     ({manifest,model,assemblies}=loaded);scope=next;requestedScope=null;engineMotion.bind(next==='engine'?model:null);
     const saved=snapshots.get(scope);Object.assign(state,saved?.state||defaults());state.night=nightPreference;
     systems=[...new Set(manifest.assemblies.map(p=>p.system))];
-    scene.add(model);model.visible=true;nightView.register(assemblies);setPositions(state.explosion);setupLabels();
+    scene.add(model);model.visible=true;nightView.register(assemblies);trimDatasets();setPositions(state.explosion);setupLabels();
     controls.minDistance=isDetail()?.1:.55;setBusy(false);syncScope();updateAppearance();
     if(saved){camera.position.copy(saved.camera);controls.target.copy(saved.target);controls.update();if(Math.abs(saved.aspect-camera.aspect)>.01)fitVisible();}else fitVisible(perspectiveDirection());
     $('#loading').hidden=true;
@@ -525,10 +560,19 @@ function animate(time){
   const dt=Math.min((time-lastTime)/1000,.1);lastTime=time;
   if(model&&Math.abs(state.grid-state.gridAmount)>.0001){state.grid+=(state.gridAmount-state.grid)*(reducedMotion?1:1-Math.exp(-dt*8));if(Math.abs(state.grid-state.gridAmount)<.0001)state.grid=state.gridAmount;setPositions(state.explosion);}
   if(model&&Math.abs(state.explosion-state.amount)>.0001){state.explosion+= (state.amount-state.explosion)*(reducedMotion?1:1-Math.exp(-dt*8));if(Math.abs(state.explosion-state.amount)<.0001)state.explosion=state.amount;setPositions(state.explosion);}
+  const movingCamera=Boolean(cameraMove);
   if(cameraMove){const t=cameraMove.duration?Math.min(1,(time-cameraMove.start)/cameraMove.duration):1;const e=1-(1-t)**4;camera.position.lerpVectors(cameraMove.from,cameraMove.to,e);controls.target.lerpVectors(cameraMove.fromTarget,cameraMove.target,e);if(t===1)cameraMove=null;}
   engineMotion.setAvailable(state.ready&&scope==='engine'&&state.amount===0&&state.explosion===0&&state.gridAmount===0&&state.grid===0);
-  if(state.ready)engineMotion.tick(dt);
-  controls.update();if(state.ready){drawLabels();nightView.sync({enabled:state.night,scope,assemblies,camera,viewport,time,reducedMotion,selection:state.selection,xray:state.xray});}renderer.render(scene,camera);requestAnimationFrame(animate);
+  const movingEngine=state.ready&&engineMotion.tick(dt);
+  const movingControls=controls.update();
+  // Day and reduced-motion scenes are static once interaction has settled.
+  // Night rock-light pools pulse, so that view continues to render.
+  const pulsingNight=state.ready&&state.night&&!reducedMotion&&(scope==='vehicle'||scope==='lighting');
+  if(needsRender||movingCamera||movingEngine||movingControls||pulsingNight){
+    if(state.ready){drawLabels();nightView.sync({enabled:state.night,scope,assemblies,camera,viewport,time,reducedMotion,selection:state.selection,xray:state.xray});}
+    renderer.render(scene,camera);needsRender=false;
+  }
+  requestAnimationFrame(animate);
 }
 requestAnimationFrame(animate);
 loadCatalog().catch(error=>{catalogFailures=['catalog index'];catalogReady=true;console.error(error);if(state.ready)updateList();});

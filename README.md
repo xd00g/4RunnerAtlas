@@ -42,3 +42,5 @@ Coverage is partial and geometry is illustrative. Dimensions, mechanical clearan
 The exterior is credited to Pitstop 3D in the acquired file and was obtained through sadiqminhas on Sketchfab, under CC BY 4.0. Both credits and source links are retained in `src/licenses.html`. Changes include Sport lettering, a viper-cut front bumper, assembly separation and approximate internal systems.
 
 Three.js and its bundled helpers retain their MIT license. Inter, Sora and JetBrains Mono retain their SIL Open Font License notices. See `src/licenses.html` and the notices under `src/vendor/` and `src/brand/fonts/`. These notices apply to their respective assets; no blanket license for all project code is implied.
+
+September 24 viewer update: the public source now includes the compressor placement correction in its locked model assets, a bounded three-scene decoded model cache, and reduced idle rendering. Model geometry and mechanical clearances remain illustrative and unverified.
