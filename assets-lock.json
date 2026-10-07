@@ -5,6 +5,10 @@
       "sha256": "cac655ce3b4b6fc059db0fc2f925ef92ac7d318d0520bb6ec9b14109fc77c2da",
       "bytes": 11850
     },
+    "accelerator-pedal-sensor.json": {
+      "sha256": "3483efb0681e5aadb70e180c9fd4905a2a6fe67d5ea859083d57f224527f527b",
+      "bytes": 9954
+    },
     "accessory-drive-hardware.json": {
       "sha256": "7875e59e00a31bfa295c8dda86927a67865ecafe4a985b8d20a78c5e10bcd29b",
       "bytes": 5173
@@ -18,28 +22,36 @@
       "bytes": 18871
     },
     "assemblies.json": {
-      "sha256": "c60dfe1c97ebe7dcd3c6aa1bac93e7491c01b3c41c7820231da0daa77bbf1aba",
-      "bytes": 56634
+      "sha256": "f3ff6b69a5e0a8f464fb40c53a7822a4a0795567e23c57897381204cad6d3c82",
+      "bytes": 56817
+    },
+    "automatic-shifter-linkage.json": {
+      "sha256": "e423f29690e3c3455355692003d7b0a74812becd1ae911870114dba343199cbf",
+      "bytes": 14643
     },
     "brake-hydraulics-abs.json": {
       "sha256": "e4e52ec7ede9f68a5ea25ba4ff45aec902f0128dc2f35b5ca0b16ff5b0916412",
       "bytes": 33458
     },
+    "brake-pedal-support.json": {
+      "sha256": "66cc76dfb5146ea14c9108a0377ba9b191b9b4be7e6c27f8c83b96d2090e0198",
+      "bytes": 16211
+    },
     "cabin-climate.json": {
-      "sha256": "d0ef247fc3489921aaafad62575f804e6e803ce53bbdf93ab79a1c052d73e6c1",
-      "bytes": 17001
+      "sha256": "6cd66885b6798c246b84dde0a1bbc0a5ba55b014796a59964aadda7fa65a1019",
+      "bytes": 24057
     },
     "cabin-hvac-air-distribution.json": {
-      "sha256": "a2f3d5a0144140cedfd3c0a0e725f52f9fcce23b910f15f09802eb6f0be5999f",
-      "bytes": 14359
+      "sha256": "14064ec9c084fc0fdbd1e8351ac3d306281f453fe72d0e2cb80dfceea45ed93e",
+      "bytes": 14838
     },
     "cabin-hvac-heat-exchanger-unit.json": {
       "sha256": "29cc50ede3a6c200f6a5826e7df0d2973fece54d2980b1c3afae6a4a64ad8ac9",
       "bytes": 12039
     },
     "cabin-interior.json": {
-      "sha256": "c1c6a016284a8ec7f65f435ebb0df01b307f66239d5dbf4697e6aaa2a95143cc",
-      "bytes": 51108
+      "sha256": "2f38b8cfcf1dd3f78efd0de612736f558a2ff9e3b0b9c683ce6e44d3fa41c4be",
+      "bytes": 58146
     },
     "cooling-system.json": {
       "sha256": "b3f19638f0aeb8b76ef337061041d2e8377fe6f527ca5e662bd7946f1dc8c527",
@@ -113,13 +125,17 @@
       "sha256": "d2750092864e5e9123b9bf69c316d82016a6eb8486de33543263a2493a80ff6d",
       "bytes": 42879
     },
+    "front-cv-joint.json": {
+      "sha256": "f81a654d9fdd248139446f94260adfbce79babc658cd3ccf720ffab3d331e1df",
+      "bytes": 17948
+    },
     "front-differential-internals.json": {
       "sha256": "624c80eb15435eb4134067c3e9aea297f168f39b3adb736db0fbc00d45783836",
       "bytes": 18418
     },
     "front-driveline.json": {
-      "sha256": "3cedcc5e2160a262a8f6d5d57c9d4e37934f48a43ecad6355ec5ff5aafe6d292",
-      "bytes": 21213
+      "sha256": "0f182788e6c611462780def735fc422ff4f0c5e574291474671e0e9a323417ab",
+      "bytes": 21214
     },
     "front-left-brake.json": {
       "sha256": "fb1dc7013b7c9fd0e48c0a46c6355ae6725d6262ec9b8dded3d62cd987e2739f",
@@ -130,12 +146,16 @@
       "bytes": 6335
     },
     "front-left.json": {
-      "sha256": "015518d7e7001bbfc57693fbd18c7c814d21e47debe42a454c7f4d2dfe4ebccd",
-      "bytes": 15264
+      "sha256": "4b16c69dd5cf871ec58347644f94c04a6fafaaacdd98a890b7fc58731afedee4",
+      "bytes": 26714
     },
     "front-lower-arm.json": {
       "sha256": "a832a8219ab73b65290b9cc7ef327f122ba27664a623dacd97a97b07bc3a09e7",
       "bytes": 34531
+    },
+    "front-propeller-u-joints.json": {
+      "sha256": "e6d69f99ad1cfb868fb578b15878f5da7ad10e258055e83a5f05d03af77c6807",
+      "bytes": 16511
     },
     "front-right-brake.json": {
       "sha256": "e65d822c39df3741ea667776f9ee78e1ffa4c30bcff7c263d23fe896f3cffd0b",
@@ -146,8 +166,16 @@
       "bytes": 6352
     },
     "front-right.json": {
-      "sha256": "d3cee7031fa3e09852b2a5bd5b35e4d9c95e5c08436654d07d5c7b6fbe38adf7",
-      "bytes": 15924
+      "sha256": "6a548a04faf78ec241ef14282e43ff39fc870aa02614f6734de0a989066de759",
+      "bytes": 27384
+    },
+    "front-shock-upper-stack.json": {
+      "sha256": "a9715d59543cf71c161b85270e15cd688d06ce372bd53c13c03ce139d9b744c2",
+      "bytes": 11864
+    },
+    "front-stabilizer-assembly.json": {
+      "sha256": "c1388d43634e3e0fcb417ff85adabe41ade6487cf64949c6057e30c5e06325e3",
+      "bytes": 14817
     },
     "front-wheel-end.json": {
       "sha256": "5a10e8a6120f6f24d6d8e6785b2e325d9c1de6c11734a2187dcfdf334b795e34",
@@ -169,6 +197,10 @@
       "sha256": "0613cbc6dbba985d0149f64ee6c8cecc9fd631155cad58dffc21d155c8e87b57",
       "bytes": 16932
     },
+    "hood-latch-supports.json": {
+      "sha256": "e0ec7fb6a6b744641af4787c3ff427b77790b9c6e8a44cd1f8ede0bf2000ea78",
+      "bytes": 12017
+    },
     "ignition-coils-plugs.json": {
       "sha256": "d64443866c5865b484a56d3034fa281d435a74759fd47321630eea958c8f9254",
       "bytes": 34090
@@ -177,13 +209,17 @@
       "sha256": "a9c2be362f41a7f097042de806af945aca4561e78beb8f6df9a7d39c063a9a0f",
       "bytes": 3314
     },
-    "models/4runner-systems.be9bc91acd473800.glb": {
-      "sha256": "be9bc91acd4738004a4421980375b328903fd960c3fe746c3638aaaa0f4871cf",
-      "bytes": 84917260
+    "models/4runner-systems.94c2d507315076ae.glb": {
+      "sha256": "94c2d507315076aeddb06de579baedb20579213c1cf8cd37068c9c9999c23d40",
+      "bytes": 89727144
     },
     "models/ac-compressor-clutch.6cb62527fa314b73.glb": {
       "sha256": "6cb62527fa314b736f23b4ab063ba10ace3aae7c3566d0468aaf16ce1a416c58",
       "bytes": 585184
+    },
+    "models/accelerator-pedal-sensor.e903790649477884.glb": {
+      "sha256": "e903790649477884d96fe388bd724af5aea76d1e55803878c202e1590d610e44",
+      "bytes": 27532
     },
     "models/accessory-drive-hardware.be95952ead496d21.glb": {
       "sha256": "be95952ead496d21050a11b6677798a730f4b961a293ceecacda92dcde9bbf0a",
@@ -197,25 +233,33 @@
       "sha256": "b091bfee2c41846f2342cd0dd057ac8d65e57798452722b1e2b658fadd003784",
       "bytes": 685632
     },
+    "models/automatic-shifter-linkage.daeb0621b177ed6c.glb": {
+      "sha256": "daeb0621b177ed6ce04c128791b3470f7e1601c6d549496215f5a5cea20eb0ed",
+      "bytes": 67024
+    },
     "models/brake-hydraulics-abs.9f9b462e2caaebef.glb": {
       "sha256": "9f9b462e2caaebef718a24dc035ab1da1cf7929fe6764b54e6cb055c2bda3bbb",
       "bytes": 265584
     },
-    "models/cabin-climate.fe34d9884fded40f.glb": {
-      "sha256": "fe34d9884fded40fd72bbf9fb91fa6368718982fa5016f23206d312aaadacb7c",
-      "bytes": 1735592
+    "models/brake-pedal-support.2b04faf84eb83338.glb": {
+      "sha256": "2b04faf84eb833384ead3d0cc61f328862ca04e40b739a617ff769b64a1b51a1",
+      "bytes": 100196
     },
-    "models/cabin-hvac-air-distribution.03d090f108305ff7.glb": {
-      "sha256": "03d090f108305ff7052c2d16a28e4765663d024e113c547ba9c93511e81ba09e",
-      "bytes": 376212
+    "models/cabin-climate.8e31b484a0cc5a53.glb": {
+      "sha256": "8e31b484a0cc5a53676fe175441e17c3e895d0b0756759bcc04206771529fe12",
+      "bytes": 2223220
+    },
+    "models/cabin-hvac-air-distribution.63cfe964f70c62da.glb": {
+      "sha256": "63cfe964f70c62da1fa819840e01cd1c2029a1d22fb9b5e9eb3b283088444433",
+      "bytes": 863376
     },
     "models/cabin-hvac-heat-exchanger-unit.c7a308609ac63313.glb": {
       "sha256": "c7a308609ac63313d5b1df1ea138a74078aaf3e81e1368f7e8103fe1e2508fe7",
       "bytes": 84360
     },
-    "models/cabin-interior.2b1f94fa327145f9.glb": {
-      "sha256": "2b1f94fa327145f9aa413173ef1e38c6aa2c72a1a5964280022602937d354562",
-      "bytes": 5758384
+    "models/cabin-interior.ab9ce7122de07d2d.glb": {
+      "sha256": "ab9ce7122de07d2de468c60e004f2b412313fe682b2ddb654eff353ad0e1c4c2",
+      "bytes": 6438744
     },
     "models/cooling-system.1b6907ec06a45491.glb": {
       "sha256": "1b6907ec06a454913cd8c22c9f93515a001e3cee6926e533bcbfa012a248b111",
@@ -289,13 +333,17 @@
       "sha256": "8f8664df9602d566202548ece93714b800cee7e1e0dfc7004c69c37a84c101b7",
       "bytes": 484688
     },
+    "models/front-cv-joint.35a72e15278adad6.glb": {
+      "sha256": "35a72e15278adad64ef5f0272df37c69f85a72847d42b7296e2e65e3743af34e",
+      "bytes": 646296
+    },
     "models/front-differential-internals.e11f2cb5dfc9e0f4.glb": {
       "sha256": "e11f2cb5dfc9e0f4a2fd5fcc2ee99109ec67cf3da22fd71dee46141fd092f192",
       "bytes": 648848
     },
-    "models/front-driveline.2332f2019e1db0ca.glb": {
-      "sha256": "2332f2019e1db0ca1fbf89688a78259770a871870233fc0a2c26eab33162c981",
-      "bytes": 1454288
+    "models/front-driveline.3db351d039196e46.glb": {
+      "sha256": "3db351d039196e469d048be9d1131a217b65fdbe3d50aaa7ed4e9383fc6cfc36",
+      "bytes": 2862848
     },
     "models/front-left-brake.0c288be847dbbc19.glb": {
       "sha256": "0c288be847dbbc194110fb0a8512a88c36b00d9fcb372d9a0b50141a8452c221",
@@ -305,13 +353,17 @@
       "sha256": "993027c29abb4479b747fcec2e2fd9277ec80ae97a2077e1fa21abb7c0476f41",
       "bytes": 232304
     },
-    "models/front-left.163eef50eedc8f57.glb": {
-      "sha256": "163eef50eedc8f574116376e9f677888ab9ebf4a7cb6759b7a1b44feb551f76c",
-      "bytes": 6482724
+    "models/front-left.f78356ce84a22ae1.glb": {
+      "sha256": "f78356ce84a22ae1223b62f01cf4a4eaf452e84171997f1967120bc95dd6f32a",
+      "bytes": 7386812
     },
     "models/front-lower-arm.1c8d13aa291fc950.glb": {
       "sha256": "1c8d13aa291fc9500d6625d6f5f0c0910737131c4cd48d3779b68c4a2d43628b",
       "bytes": 163276
+    },
+    "models/front-propeller-u-joints.8e066473e02708e7.glb": {
+      "sha256": "8e066473e02708e71607bbfcc8a22692ebe00496a9e9baf2164961212f74b4fd",
+      "bytes": 119424
     },
     "models/front-right-brake.7642853dbbc5d56e.glb": {
       "sha256": "7642853dbbc5d56e4c57ef755194b0150b4cedf71a1132b2383631ee671abb2c",
@@ -321,9 +373,17 @@
       "sha256": "da46c14a5d4fb0003aca60d2aaf4de415ad6b2da401ab7f02224971a23df75e8",
       "bytes": 232524
     },
-    "models/front-right.b268ba42a50178e3.glb": {
-      "sha256": "b268ba42a50178e3b29954d62eca29388161c5ce41087f2bcfca17150419459a",
-      "bytes": 6482940
+    "models/front-right.985a900fcdb16c63.glb": {
+      "sha256": "985a900fcdb16c635a81b0649259adfc64684a13dd243576cdafb5d6d01a39b2",
+      "bytes": 7387240
+    },
+    "models/front-shock-upper-stack.ca4a707d0e7fffd9.glb": {
+      "sha256": "ca4a707d0e7fffd9689221a8817b5fdab3e9c7e77748a9f883588c4092bca809",
+      "bytes": 4026948
+    },
+    "models/front-stabilizer-assembly.0cb0d0caa4fe2ed6.glb": {
+      "sha256": "0cb0d0caa4fe2ed66754be0af1b2665faebd95e247b06d828585d3dfc84e28e4",
+      "bytes": 258172
     },
     "models/front-wheel-end.82a3901902ca4eef.glb": {
       "sha256": "82a3901902ca4eefcd433f97636215189df3deb9a75640c4b9d7abe77d0bc701",
@@ -344,6 +404,10 @@
     "models/fuel-system.1a77efb11785c812.glb": {
       "sha256": "1a77efb11785c812a1d0ea78f49d005b88c53792ac7e436539514cea65790f49",
       "bytes": 1164192
+    },
+    "models/hood-latch-supports.1bb16fc7ae612a36.glb": {
+      "sha256": "1bb16fc7ae612a369dab763ee7cc731430c666940e5c39effe2fc3c425c19cef",
+      "bytes": 206160
     },
     "models/ignition-coils-plugs.352e80bc2e47817a.glb": {
       "sha256": "352e80bc2e47817a7cd0335f24c7886b9e7a08e6737780a149d0bb8a8628e8c7",
@@ -373,37 +437,45 @@
       "sha256": "01928d7d4c8e4ddaf1abc138433f90c5b600c76c3c1e444a5068b598758ffc02",
       "bytes": 614408
     },
-    "models/powertrain-layout.13c6980ec71da0f1.glb": {
-      "sha256": "13c6980ec71da0f1fb9620b872a2096c7a55794ae47bf97d4d0c7dccda0af44e",
-      "bytes": 23509252
+    "models/powertrain-layout.14713f1cfd7cffc5.glb": {
+      "sha256": "14713f1cfd7cffc5025e631f9252991256d322feb5e856ecca97c367e952f37c",
+      "bytes": 25340872
     },
     "models/rear-axle-bearing-stack.812749aa46cf1107.glb": {
       "sha256": "812749aa46cf11072222d76e998b64fdec80d76e813f484fc233a717f239957c",
       "bytes": 796400
     },
-    "models/rear-axle.dc45647bde430e5c.glb": {
-      "sha256": "dc45647bde430e5c133aa3c448e5595379320176098b8de9a2f6d682ab07cbcb",
-      "bytes": 2596972
+    "models/rear-axle.97b8ea0bb5d06f8f.glb": {
+      "sha256": "97b8ea0bb5d06f8f319f989b10a082223f259df56e6078b9f5c10bbe5a79db87",
+      "bytes": 4422644
     },
     "models/rear-brake-calipers.2987176970059a0b.glb": {
       "sha256": "2987176970059a0b3de509850c2467b4fd5e2dcaede7b3be7553ce8c6c922396",
       "bytes": 385752
     },
-    "models/rear-brake-left.03394359ebe26542.glb": {
-      "sha256": "03394359ebe2654282109ef78196189df6905c2427572c9da3b8435d3e4ff542",
-      "bytes": 1820396
+    "models/rear-brake-left.d52b33c3e8330ccf.glb": {
+      "sha256": "d52b33c3e8330ccf7a95affb8584a47028dc6c952bd0d02ce2ec3be2566aea26",
+      "bytes": 3645304
     },
-    "models/rear-brake-right.2d60eb1791763f93.glb": {
-      "sha256": "2d60eb1791763f938d9cf293750773f6044872d0a5b946fcd1a58eac1178050b",
-      "bytes": 1817604
+    "models/rear-brake-right.450b5253f02aaf72.glb": {
+      "sha256": "450b5253f02aaf72c988bcb1c9bd2b91477fd14109fef8e3b142fe0bb44123d7",
+      "bytes": 3642512
     },
     "models/rear-differential-internals.21d3b95dfd9cff95.glb": {
       "sha256": "21d3b95dfd9cff95f3a7252c46853ed12ebe7f56093d4278ce5d334a4092cffa",
       "bytes": 692800
     },
-    "models/rear-propeller-shaft.2d27946b465051e7.glb": {
-      "sha256": "2d27946b465051e73fca97e1fca4761e246580623505bdfcc4565c95968e67fc",
-      "bytes": 436200
+    "models/rear-parking-brake-shoes.6f23af3ef4647273.glb": {
+      "sha256": "6f23af3ef46472733547c8d044e435b1a4177d31ec413f6bc3e96e8e207f694c",
+      "bytes": 1824368
+    },
+    "models/rear-propeller-shaft.185c8910461e96b5.glb": {
+      "sha256": "185c8910461e96b5a152cf3326c264c9b4095343c3d5bad4dd9e1e1b2ce18f09",
+      "bytes": 857756
+    },
+    "models/rear-propeller-u-joints.2a56ad5c3771ffad.glb": {
+      "sha256": "2a56ad5c3771ffadc75a19031c4099c91d16f61ca76d14fbc348f2307ca9a06a",
+      "bytes": 421748
     },
     "models/rear-suspension-links.e9896944f7a109cc.glb": {
       "sha256": "e9896944f7a109cc5e4860473047e65dbe925f9dd9afbbe564fbc95972188c6a",
@@ -510,8 +582,8 @@
       "bytes": 17616
     },
     "part-cards.json": {
-      "sha256": "b9d069c95c75782d28de1bc5692f2d94723fd7f1e9d28a8c17c62a8dbc1752b7",
-      "bytes": 563144
+      "sha256": "cfaecdc3c9caf0451a0588025c3f017e499f90c3cd6e30c23f6aa8f3d886af00",
+      "bytes": 604139
     },
     "piston-rod-rings.json": {
       "sha256": "64b71cccbb116b42d1fbc2816208cf88646b24f1bea24a593abf5489ff68f47c",
@@ -522,7 +594,7 @@
       "bytes": 25600
     },
     "powertrain-layout.json": {
-      "sha256": "459722bd88b29b5908722dc8d0ed735fec53d0c95e7baf24b46bdb91d6ff57cd",
+      "sha256": "6efe8f571cd5c9f4040a90cad4013debb81edcce7c5c9237e4f3a300a99d2ef6",
       "bytes": 264755
     },
     "rear-axle-bearing-stack.json": {
@@ -530,28 +602,36 @@
       "bytes": 50048
     },
     "rear-axle.json": {
-      "sha256": "9626af67fc55e88e2661692e8fb8e798710d14fe69028a9c1f804eaf90944fff",
-      "bytes": 26239
+      "sha256": "a7629d66c17b68949933b981f5c78e24f116ca0e3e51640ba92b8911d767de2d",
+      "bytes": 26264
     },
     "rear-brake-calipers.json": {
       "sha256": "0a09f5a4ed8fd545375c7ac39649d00e5e8a844fab8c9d95da9bcb2ebedc1144",
       "bytes": 59088
     },
     "rear-brake-left.json": {
-      "sha256": "72e2bbfa1d0a87474bd7412ab94e82c8ceb2a63d7f325b26a8615328c2b02c4e",
-      "bytes": 11581
+      "sha256": "b746b0b9081bcce1ebbad4f6897f7522ba61df818c83e4796977cd4c2829794c",
+      "bytes": 11605
     },
     "rear-brake-right.json": {
-      "sha256": "0713cd49e7698400b5abbde2eb0fcbe1f4c573098dae2f3a30e2eb48e60503cd",
-      "bytes": 11619
+      "sha256": "89a06dce44da2db5d71e0b005a94474bcdff8b918f78659f4f93ca7a3d87ee37",
+      "bytes": 11643
     },
     "rear-differential-internals.json": {
       "sha256": "4ceb8001048890ebdfd55b4c2de4c5aef4b3fa54def97021fa82c9f39eefe4ae",
       "bytes": 18286
     },
+    "rear-parking-brake-shoes.json": {
+      "sha256": "eeefae36d9bc7b3951db41894922a730b0bd62cfa9396859a716461dc98a294c",
+      "bytes": 29297
+    },
     "rear-propeller-shaft.json": {
-      "sha256": "0493d1a648cb38a0115c8a640bd2647bd0ca3276db3c53918da960df12efcaa6",
+      "sha256": "982fc4195d0c43691f41c331cb8b9b1bf483351b503c370b9f6f7cd4098e8be3",
       "bytes": 11303
+    },
+    "rear-propeller-u-joints.json": {
+      "sha256": "592362e88a239704d75558fb636f7629b707be54ea808016b96731412d4758f0",
+      "bytes": 21038
     },
     "rear-suspension-links.json": {
       "sha256": "338666d97dc3544123e02dfd9987484af697006705c170f0fc8f21166c58db48",
@@ -566,8 +646,8 @@
       "bytes": 3519
     },
     "scopes.json": {
-      "sha256": "fa010c7cd9fab6fb68aba0bd7731fe8b3dda56c864fca8b00f68791cf5ce2e3b",
-      "bytes": 52349
+      "sha256": "5e7d4d6fb6b80a16e5e7b0164d42e1786bff1fc0af29e8f0e027ed838eed82ec",
+      "bytes": 60511
     },
     "seat-track-mechanisms.json": {
       "sha256": "ba26e6d23f9dbee90884e55640c1c8ee50bde092b3b9d1376c27379ad4998b47",

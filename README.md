@@ -4,7 +4,7 @@ An interactive parts explorer for a 2005 Toyota 4Runner Sport 4WD V8, by [Nebuly
 
 [Open the live viewer](https://4runner.nebulys.net/)
 
-Select, isolate and explode vehicle systems, switch between spatial and grid layouts, and inspect component descriptions and qualified part-number references. Includes night lighting and an illustrative engine animation. Current coverage: 79 views and 793 documented component records.
+Select, isolate and explode vehicle systems, switch between spatial and grid layouts, and inspect component descriptions and qualified part-number references. Includes night lighting and an illustrative engine animation. Current coverage: 89 views and 850 documented component records.
 
 ## Run locally
 
@@ -17,7 +17,7 @@ npm start
 
 Open http://127.0.0.1:8795/. Set `PORT` to use another port.
 
-The first command downloads only the public viewer catalogs and GLB models from the live site, checks their locked SHA-256 hashes, and stores them in the ignored `data/` directory. The models total about 211.3 MB before HTTP compression. Models are distributed separately to keep this repository focused on application source. If the live assets change, use a matching asset lock and source release; mismatched files are rejected.
+The first command downloads only the public viewer catalogs and GLB models from the live site, checks their locked SHA-256 hashes, and stores them in the ignored `data/` directory. The models total about 236.4 MB before HTTP compression. Models are distributed separately to keep this repository focused on application source. If the live assets change, use a matching asset lock and source release; mismatched files are rejected.
 
 To produce static files for another web server:
 
@@ -44,3 +44,5 @@ The exterior is credited to Pitstop 3D in the acquired file and was obtained thr
 Three.js and its bundled helpers retain their MIT license. Inter, Sora and JetBrains Mono retain their SIL Open Font License notices. See `src/licenses.html` and the notices under `src/vendor/` and `src/brand/fonts/`. These notices apply to their respective assets; no blanket license for all project code is implied.
 
 September 24 viewer update: the public source now includes the compressor placement correction in its locked model assets, a bounded three-scene decoded model cache, and reduced idle rendering. Model geometry and mechanical clearances remain illustrative and unverified.
+
+October release: nine driveline, suspension and cabin-control studies, plus hood hardware and refined HVAC geometry, bring the viewer to 89 views and 850 documented records. Geometry remains illustrative; dimensions, clearances and mechanical fit are unverified.
