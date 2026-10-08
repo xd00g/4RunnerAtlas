@@ -4,7 +4,9 @@ An interactive parts explorer for a 2005 Toyota 4Runner Sport 4WD V8, by [Nebuly
 
 [Open the live viewer](https://4runner.nebulys.net/)
 
-Select, isolate and explode vehicle systems, switch between spatial and grid layouts, and inspect component descriptions and qualified part-number references. Includes night lighting and an illustrative engine animation. Current coverage: 89 views and 850 documented component records.
+Version 2 adds six vehicle system families, model callouts, unified System/Part/OEM search, assembly breadcrumbs and a details drawer that becomes a collapsible sheet on phones. Select, isolate and explode systems; open View tools for Spatial/Grid layouts, camera views and display controls. The Engine shortcut and illustrative animation remain available. Current coverage: 89 views and 850 documented component records.
+
+Night lighting is enabled by default. Use Night view in View tools to switch to daylight, or open the viewer with `?night=0`. OEM references retain their source, variant and unverified-fit qualifications.
 
 ## Run locally
 

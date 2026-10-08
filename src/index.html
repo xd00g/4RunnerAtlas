@@ -9,6 +9,7 @@
   <link rel="icon" href="brand/nebulys-favicon.ico">
   <link rel="stylesheet" href="nebulys-theme.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="atlas-layout.css">
   <script type="module" src="reading-controls.js"></script>
   <script type="module" src="bootstrap.js"></script>
 
@@ -20,6 +21,13 @@
       <span><strong>4Runner (4th Gen) Atlas</strong><span class="identity-sub">by Nebulys</span></span>
     </a>
     <div class="vehicle-name">2005 Toyota 4Runner <span>Sport · 4WD · 4.7 L V8</span></div>
+    <div class="atlas-global-search">
+      <label class="sr-only" for="atlas-search">Find a system, part, or OEM reference</label>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
+      <input id="atlas-search" type="search" placeholder="Find a system, part, or OEM reference…" autocomplete="off" aria-controls="atlas-search-results" aria-expanded="false">
+      <kbd aria-hidden="true">/</kbd>
+      <div id="atlas-search-results" class="atlas-search-results" role="listbox" hidden></div>
+    </div>
     <div class="header-actions">
       <a class="manual-link" hidden href="manual.html">Service manual</a>
       <button id="about" class="text-button">About this model</button>
@@ -27,8 +35,9 @@
     </div>
   </header>
   <div class="scopebar">
+    <nav id="atlas-families" class="atlas-families" aria-label="Vehicle families"></nav>
     <details id="view-picker" class="view-picker">
-      <summary id="view-picker-toggle"><span class="view-picker-label">View</span><strong id="scope-current">Whole vehicle</strong><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></summary>
+      <summary id="view-picker-toggle"><span class="view-picker-label">Browse all</span><strong id="scope-current">Whole vehicle</strong><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></summary>
       <div class="view-picker-panel">
         <label class="sr-only" for="view-search">Find a view</label>
         <input id="view-search" type="search" placeholder="Find a view…" autocomplete="off" spellcheck="false" aria-controls="view-options">
@@ -37,12 +46,15 @@
         <p id="view-empty" hidden>No views found. Try “door” or “engine”.</p>
       </div>
     </details>
-    <button id="toggle-sidebar" type="button" class="stage-button" aria-controls="assembly-sidebar" aria-expanded="true">Hide sidebar</button><button id="expand-part" type="button" class="stage-button" aria-haspopup="dialog" disabled>Expand part info</button>
+    <button id="toggle-sidebar" type="button" class="stage-button" aria-controls="assembly-sidebar" aria-expanded="true">Hide details</button><button id="expand-part" type="button" class="stage-button" aria-haspopup="dialog" disabled>Read part</button>
     <span id="scope-description">Explore the vehicle, then open the engine.</span>
   </div>
-  <div id="component-breadcrumb" class="component-breadcrumb" hidden><button id="scope-parent">← Whole vehicle</button><nav id="scope-trail" aria-label="Assembly path"></nav><span id="component-parent" hidden></span><strong id="component-current"></strong><span class="component-notice">Reference-guided · Dimensions approximate</span></div>
+  <div id="component-breadcrumb" class="component-breadcrumb" hidden><nav id="scope-trail" aria-label="Assembly path"></nav><button id="scope-parent" type="button">↑ Up</button><button id="atlas-home" type="button">← Back to vehicle</button><span id="component-parent" hidden></span><strong id="component-current"></strong><span class="component-notice">Reference-guided · Dimensions approximate</span></div>
   <main class="workspace">
-    <aside id="assembly-sidebar" class="catalog" aria-label="Assembly catalog">
+    <aside id="assembly-sidebar" class="catalog" aria-label="Assembly details" data-atlas-panel="overview">
+      <div class="atlas-drawer-head"><div><span class="atlas-eyebrow">Visual vehicle atlas</span><h1 id="atlas-drawer-title" tabindex="-1">Whole vehicle</h1></div><button id="atlas-drawer-close" type="button" aria-label="Close details">Close</button></div>
+      <div id="atlas-drawer-body" class="atlas-drawer-body"></div>
+      <div id="atlas-parts" class="atlas-parts">
       <div class="catalog-head"><h1 id="catalog-title" tabindex="-1">Assemblies</h1><span id="assembly-count" class="count">—</span></div>
       <div class="search-wrap">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
@@ -53,15 +65,15 @@
       <div class="catalog-filters"><label id="system-label" class="sr-only" for="system">Vehicle system</label><select id="system"><option value="all">All systems</option><option>Body</option><option>Powertrain</option><option>Chassis</option><option>Wheels</option><option>Cabin</option></select><button id="restore" class="text-button" disabled>Restore hidden</button></div>
       <div id="catalog-status" class="catalog-status" role="status" hidden></div>
       <div id="part-list" class="part-list" role="list" aria-label="Search results"><p class="list-message">Loading assembly catalog…</p></div>
+      </div>
       <div id="selection" class="selection">
         <div class="selection-empty"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m16 3 12 7v13l-12 7L4 23V10Zm-12 7 12 7 12-7M16 17v13"/></svg><h2>Explore how it fits.</h2><p>Select an assembly in the model or the list to see its role and references.</p></div>
       </div>
+      <button id="atlas-drawer-toggle" class="atlas-drawer-toggle" type="button" aria-controls="assembly-sidebar" aria-expanded="false">Expand details</button>
     </aside>
     <section class="stage" aria-label="Interactive 3D vehicle">
       <div class="stage-top">
-        <div class="view-controls" role="group" aria-label="Camera views"><button data-view="perspective" aria-pressed="true">3/4</button><button data-view="front" aria-pressed="false">Front</button><button data-view="side" aria-pressed="false">Side</button><button data-view="top" aria-pressed="false">Top</button></div>
-        <div class="stage-actions"><button id="night-view" class="stage-button night-toggle" aria-pressed="false" title="Switch to the night lighting environment">Night view</button><button id="engine-view" class="stage-button" type="button" title="Open the detailed engine view">Engine</button><button id="powertrain-view" class="stage-button night-toggle" type="button" aria-pressed="false">Powertrain</button>
-        <button id="chassis-view" class="stage-button" aria-pressed="false" title="Show the chassis and underbody systems">Chassis view</button><button id="fit" class="stage-button" title="Fit visible assemblies in view">Fit view</button></div>
+        <div class="stage-actions"><button id="engine-view" class="stage-button atlas-engine-shortcut" type="button" title="Open the detailed engine view">Engine</button></div>
         <div id="model-selection-actions" class="model-selection-actions" role="group" aria-label="Selected part actions" hidden>
           <span id="model-selected-name" class="model-selected-name"></span>
           <div class="model-selection-buttons"><button id="model-isolate" type="button" aria-pressed="false" title="Show only this selection (I)">Isolate</button><button id="model-focus" type="button" title="Zoom to this selection (F)">Focus</button><button id="model-clear" type="button" title="Clear selection (Escape)">Clear</button></div>
@@ -70,18 +82,19 @@
       <div class="mobile-context"><strong id="mobile-identity">2005 4Runner Sport · 4.7 L V8</strong><span id="mobile-scope">Approximate major-assembly study</span><span id="mobile-configuration">VIN-confirmed 4WD · Geometry approximate</span></div>
       <div id="viewport" tabindex="0" role="group" aria-label="3D model. Drag to rotate, scroll to zoom. Select assemblies from the catalog for keyboard access."></div>
       <div id="labels" class="labels" aria-hidden="true"></div>
+      <nav id="atlas-callouts" class="atlas-callouts" aria-label="Visible model destinations"></nav>
       <div id="loading" class="load-state"><div class="load-line"></div><strong id="load-title">Preparing the 4Runner</strong><span id="load-detail">Loading local 3D geometry…</span></div>
       <div id="load-error" class="load-state error-state" hidden><strong>The 3D model could not load.</strong><span id="error-detail">Reload the page to try again.</span><button id="reload-viewer">Reload viewer</button></div>
       <div class="stage-caption"><span id="stage-mode">Assembled</span><span id="visible-count"></span></div>
       <div class="stage-tools">
-        <div id="engine-motion" class="engine-motion" role="group" aria-label="Engine motion study" hidden>
+        <details id="engine-motion" class="engine-motion" aria-label="Engine motion study" hidden>
+          <summary>Engine motion</summary><div class="engine-motion-content">
           <div class="motion-actions"><button id="engine-play" class="motion-play" aria-pressed="false" disabled>Play</button><button id="engine-reveal" aria-pressed="false" disabled>Reveal internals</button><label class="sr-only" for="engine-speed">Playback speed</label><select id="engine-speed" disabled><option value="0.5">Very slow</option><option value="1" selected>Slow</option><option value="2">Faster</option></select><button id="engine-motion-reset" disabled>Reset motion</button></div>
           <div class="motion-scrub"><label for="engine-angle">Crank</label><input id="engine-angle" type="range" min="0" max="720" step="1" value="0" disabled><output id="engine-angle-value" for="engine-angle">0°</output></div>
           <p id="engine-motion-hint">Illustrative motion · Valve lift, VVT-i phase and combustion are not simulated.</p>
-        </div>
-        <div class="layout-row"><span>Layout</span><div role="group" aria-label="Explosion layout"><button data-layout="spatial" aria-pressed="true" disabled>Spatial</button><button data-layout="grid" aria-pressed="false" disabled>Grid</button></div><span id="grid-hint" hidden>Fit view to see the full grid</span></div>
+          </div></details>
         <div class="explode-row"><button id="explode-toggle" class="primary-button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 4-8 4-8-4Zm-8 9 8 4 8-4M4 17l8 4 8-4"/></svg><span>Explode vehicle</span></button><label for="explode" class="sr-only">Explode amount</label><input id="explode" type="range" min="0" max="100" value="0" disabled><output id="explode-value" for="explode">0%</output></div>
-        <div class="utility-row"><div><button id="xray" aria-pressed="false" disabled>X-ray</button><button id="label-toggle" aria-pressed="false" disabled>Labels</button></div><span class="interaction-help">Drag to orbit · Scroll to zoom</span><button id="reset" disabled>Reset all</button></div>
+        <div class="atlas-tool-row"><button id="reset" disabled>Reset</button><details class="atlas-view-tools"><summary>View tools</summary><div class="atlas-view-tools-panel"><div class="view-controls" role="group" aria-label="Camera views"><button data-view="perspective" aria-pressed="true">3/4</button><button data-view="front" aria-pressed="false">Front</button><button data-view="side" aria-pressed="false">Side</button><button data-view="top" aria-pressed="false">Top</button></div><div class="stage-actions"><button id="night-view" class="stage-button night-toggle" aria-pressed="false" title="Switch to the night lighting environment">Night view</button><button id="powertrain-view" class="stage-button night-toggle" type="button" aria-pressed="false">Powertrain</button><button id="chassis-view" class="stage-button" aria-pressed="false" title="Show the chassis and underbody systems">Chassis view</button><button id="fit" class="stage-button" title="Fit visible assemblies in view">Fit view</button></div><div class="layout-row"><span>Layout</span><div role="group" aria-label="Explosion layout"><button data-layout="spatial" aria-pressed="true" disabled>Spatial</button><button data-layout="grid" aria-pressed="false" disabled>Grid</button></div><span id="grid-hint" hidden>Fit view to see the full grid</span></div><div class="utility-row"><div><button id="xray" aria-pressed="false" disabled>X-ray</button><button id="label-toggle" aria-pressed="false" disabled>Labels</button></div><span class="interaction-help">Drag to orbit · Scroll to zoom</span></div></div></details></div>
       </div>
     </section>
   </main>

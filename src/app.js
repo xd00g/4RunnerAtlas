@@ -6,15 +6,18 @@ import {createNightView} from './night-view.js';
 import {planSystemGrid} from './system-grid.js';
 import {createViewPicker} from './view-picker.js';
 import {createEngineMotion} from './engine-motion.js';
+import {createAtlasNavigation, displayScopeDescription} from './atlas-navigation.js';
 
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => [...document.querySelectorAll(s)];
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-let nightPreference=new URL(location.href).searchParams.get('night')==='1';
+const nightFromURL=()=>new URL(location.href).searchParams.get('night')!=='0';
+let nightPreference=nightFromURL();
 const defaults = () => ({selection:null, hidden:new Set(), isolate:false, xray:false, labels:false, explosion:0, amount:0, configuration:'4wd', search:'', searchArea:'truck', system:'all', view:'perspective', layout:'spatial', grid:0, gridAmount:0, night:nightPreference});
 const state = {...defaults(), ready:false};
 let assemblies = new Map();
 let scope=null,requestedScope=null,loadVersion=0,routeVersion=0;
+let atlasScope=null;
 const datasets=new Map(),snapshots=new Map();
 const siteConfig=await fetch('site-config.json').then(r=>r.json());
 for(const link of document.querySelectorAll('.manual-link'))link.hidden=!siteConfig.manualAvailable;
@@ -25,7 +28,7 @@ const scopeRegistry=(await registryResponse.json()).scopes;
 const scopeDefinitions=new Map(scopeRegistry.map(entry=>[entry.id,entry]));
 const scopeFiles=Object.fromEntries(scopeRegistry.map(entry=>[entry.id,entry.manifest]));
 const manifests=new Map();
-let wholeCatalog=[],partCards={},numberSources={},catalogReady=false,catalogFailures=[];
+let wholeCatalog=[],partCards={},numberSources={},catalogReady=false,catalogFailures=[],partInfoRefreshPending=false;
 function getManifest(id){
   if(!manifests.has(id))manifests.set(id,fetch(scopeFiles[id]).then(response=>{if(!response.ok)throw new Error('Catalog unavailable');return response.json();}).catch(error=>{manifests.delete(id);throw error;}));
   return manifests.get(id);
@@ -38,9 +41,37 @@ async function loadCatalog(){
   try{numberSources=(await fetch('number-sources.json').then(r=>r.json())).sources||{};}catch{}
   for(const card of Object.values(partCards))card.manualCandidateNumbers=[...new Set([...(card.numberReferenceIds||[]),...(card.oemReferenceIds||[])])].flatMap(id=>(numberSources[id]?.rows||[]).flatMap(row=>row.number?[row.number,row.number.replace(/[^a-z0-9]/gi,'')]:[]));
   wholeCatalog=indexCatalog(results.filter(result=>result.status==='fulfilled').map(result=>result.value),partCards);
-  catalogReady=true;if(state.ready){updateList();updateSelection();}
+  catalogReady=true;atlas.setCatalog(wholeCatalog,numberSources);
+  if(state.ready){
+    const active=document.activeElement;
+    const listFocus=$('#part-list').contains(active)?{part:active.dataset.part,result:active.dataset.resultPart,scope:active.dataset.resultScope,text:active.textContent?.trim()}:null;
+    const selectionFocus=$('#selection').contains(active)?{id:active.id,text:active.textContent?.trim()}:null;
+    updateList();
+    if(listFocus){
+      const choices=[...$('#part-list').querySelectorAll('button')];
+      const replacement=choices.find(button=>listFocus.part&&button.dataset.part===listFocus.part)||
+        choices.find(button=>listFocus.result&&button.dataset.resultPart===listFocus.result&&button.dataset.resultScope===listFocus.scope)||
+        choices.find(button=>button.textContent.trim()===listFocus.text);
+      (replacement||$('#search')).focus({preventScroll:true});
+    }
+    if($('#part-dialog').open)partInfoRefreshPending=true;
+    else{
+      updateSelection();
+      if(selectionFocus){
+        const choices=[...$('#selection').querySelectorAll('button,summary,a')];
+        const replacement=choices.find(element=>selectionFocus.id&&element.id===selectionFocus.id)||
+          choices.find(element=>element.textContent.trim()===selectionFocus.text);
+        (replacement||$('#atlas-drawer-title')).focus({preventScroll:true});
+      }
+    }
+  }
 }
 const childScopes=id=>scopeRegistry.filter(entry=>manifest?.assemblies.find(p=>p.id===id)?.detailScopeIds?.includes(entry.id)||(entry.parentAssemblyId===id&&(entry.parentScopeId||'vehicle')===scope)||(scope==='vehicle'&&entry.id==='powertrain-layout'&&powertrainOwners.has(id)));
+function orderedChildScopes(record){
+  const explicit=record.detailScopeIds||[];
+  const rank=entry=>{const index=explicit.indexOf(entry.id);return index>=0?index:entry.id===record.id?100:entry.parentAssemblyId===record.id?101:200;};
+  return childScopes(record.id).sort((a,b)=>rank(a)-rank(b));
+}
 const isEngine=()=>scope==='engine';
 const isDetail=()=>scope!=='vehicle';
 const currentScope=()=>scopeDefinitions.get(scope);
@@ -50,6 +81,19 @@ const plural=()=>isDetail()?'components':'assemblies';
 const powertrainOwners=new Set(["engine", "transmission", "transfer-case", "drive-front", "drive-rear", "cooling", "exhaust", "rear-axle", "engine-starter", "engine-alternator", "engine-oil-pump"]);
 const chassisOwners=new Set(['frame','rear-axle','suspension-front-left','suspension-front-right','suspension-rear','steering','drive-front','drive-rear','fuel','exhaust','transmission','transfer-case','parking-brake-system']);
 const viewPicker=createViewPicker($('#view-picker'),scopeRegistry,id=>switchScope(id));
+const atlas=createAtlasNavigation({
+  scopes:scopeRegistry,
+  onScope:id=>switchScope(id),
+  onPart:entry=>navigatePart(entry),
+  onAssembly:id=>selectPart(id),
+  onChildren:id=>{const record=manifest?.assemblies.find(entry=>entry.id===id);return record?orderedChildScopes(record):[];},
+  onIsolateAssembly:id=>{if(state.selection!==id)selectPart(id);if(!state.isolate)toggleIsolation();},
+  onOpenParts:()=>setSidebarVisible(true),
+  onOpenDrawer:()=>setSidebarVisible(true),
+  onCloseDesktop:()=>setSidebarVisible(false),
+  onRefresh:()=>{needsRender=true;},
+  isReady:()=>state.ready
+});
 const viewport = $('#viewport');
 const scene = new Scene();
 const renderer = new WebGLRenderer({antialias:true,alpha:true});
@@ -156,6 +200,10 @@ function updateSelection(){
   for(const ref of p.references){if(ref.url&&(siteConfig.manualAvailable||!ref.url.startsWith('manual.html'))){const a=document.createElement('a');a.href=ref.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=ref.label;refs.append(a);}else{const label=document.createElement('small');label.textContent=ref.label+' · Private project reference';refs.append(label);}}
   const note=document.createElement('small');note.textContent=`Stable ID: ${p.id}. ${p.geometryNote||p.notes|| (isDetail()?'This selection is a component study group; smaller features are not separately identified service parts.':p.detailScope?'Partial component coverage is available in its separate popout.':'Individual service parts are not modeled.')} Number references and fitment qualifications are listed separately.`;refs.append(note);
   panel.append(heading,meta,actions);
+  for(const detail of orderedChildScopes(p)){
+    const open=document.createElement('button');open.className='open-engine';open.textContent=`Open ${detail.id==='engine'?'engine components':detail.label.toLowerCase()+' components'} →`;
+    open.addEventListener('click',async()=>{await switchScope(detail.id);$('#catalog-title').focus({preventScroll:true});});panel.append(open);
+  }
   if(card.referenceImage&&siteConfig.localReferences){
     const figure=document.createElement('figure');figure.className='part-reference';
     const image=document.createElement('img');image.src=card.referenceImage.src;image.alt=card.referenceImage.alt||`Reference for ${p.name}`;image.loading='lazy';
@@ -187,10 +235,6 @@ function updateSelection(){
 
   if(card.sourceStatus){const source=document.createElement('p');source.className='part-source-status';source.textContent=card.sourceStatus;panel.append(source);}
   const geometry=document.createElement('details');geometry.className='references';const geometrySummary=document.createElement('summary');geometrySummary.textContent='About this geometry';geometry.append(geometrySummary,description);panel.append(geometry);
-  for(const detail of childScopes(p.id)){
-    const open=document.createElement('button');open.className='open-engine';open.textContent=`Open ${detail.id==='engine'?'engine components':detail.label.toLowerCase()+' components'} →`;
-    open.addEventListener('click',async()=>{await switchScope(detail.id);$('#catalog-title').focus({preventScroll:true});});panel.append(open);
-  }
   panel.append(refs);
 }
 function assembledExteriorView(){return scope==='vehicle'&&state.amount===0&&state.explosion===0&&state.layout==='spatial'&&!state.selection&&!state.xray&&!state.isolate&&state.hidden.size===0;}
@@ -230,7 +274,7 @@ function updateAppearance(){
   $('#powertrain-view').textContent=powertrainActive?'Whole vehicle':'Powertrain';
   $('#chassis-view').setAttribute('aria-pressed',String(chassisActive));
   $('#chassis-view').textContent=chassisActive?'Show whole vehicle':'Chassis view';
-  updateSelection();updateList();
+  updateSelection();updateList();atlas.sync({scope,scopeManifest:manifest,selection:state.selection,scopeChanged:atlasScope!==scope});atlasScope=scope;
 }
 function selectPart(id){
   if(id&&!assemblies.has(id))return;
@@ -318,6 +362,14 @@ function drawLabels(){
     el.hidden=point.z>1||point.z<-1||x<60||x>w-60||y<76||y>h-25||(overlap&&!selected);
     if(!el.hidden){el.style.left=x+'px';el.style.top=y+'px';el.classList.toggle('selected',selected);placed.push({x,y});}
   }
+  atlas.updateCalloutPositions(id=>{
+    const a=assemblies.get(id);if(!a||!a.object.visible)return null;
+    const point=a.center.clone();a.object.localToWorld(point);point.project(camera);
+    const overlay=$('#atlas-callouts')?.getBoundingClientRect(),view=viewport.getBoundingClientRect();
+    const x=(point.x*.5+.5)*w+(view.left-(overlay?.left||view.left));
+    const y=(-point.y*.5+.5)*h+(view.top-(overlay?.top||view.top));
+    return {x,y,visible:point.z>=-1&&point.z<=1&&x>=24&&x<(overlay?.width||w)-24&&y>=40&&y<(overlay?.height||h)-40};
+  });
 }
 let down=null;
 viewport.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY};cameraMove=null;});
@@ -344,7 +396,7 @@ $('#label-toggle').addEventListener('click',()=>{state.labels=!state.labels;upda
 $('#night-view').addEventListener('click',()=>{
   nightPreference=!nightPreference;state.night=nightPreference;
   for(const snapshot of snapshots.values())snapshot.state.night=nightPreference;
-  const url=new URL(location.href);if(nightPreference)url.searchParams.set('night','1');else url.searchParams.delete('night');history.replaceState(null,'',url);
+  const url=new URL(location.href);url.searchParams.set('night',nightPreference?'1':'0');history.replaceState(null,'',url);
   updateAppearance();announce(nightPreference?'Night view enabled. Green underglow tracks the lighting geometry.':'Day inspection view restored.');
 });
 $('#restore').addEventListener('click',()=>{state.hidden.clear();updateAppearance();fitVisible();announce(`Hidden ${plural()} restored.`);});
@@ -379,9 +431,17 @@ $('#model-clear').addEventListener('click',()=>{selectPart(null);$('#viewport').
 $('#about').addEventListener('click',()=>$('#about-dialog').showModal());
 $('#close-about').addEventListener('click',()=>$('#about-dialog').close());
 $('#about-dialog').addEventListener('click',e=>{if(e.target===$('#about-dialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
+$('#part-dialog').addEventListener('close',()=>{
+  if(!partInfoRefreshPending)return;
+  partInfoRefreshPending=false;
+  if(!state.ready||!state.selection)return;
+  const restoreInline=document.activeElement?.classList?.contains('inline-expand');
+  updateSelection();
+  if(restoreInline)$('#selection .inline-expand')?.focus({preventScroll:true});
+});
 document.addEventListener('keydown',e=>{
   if(/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)||$('#about-dialog').open||$('#part-dialog').open)return;
-  if(e.key==='/'){e.preventDefault();setSidebarVisible(true);$('#search').focus();}
+  if(e.key==='/'){e.preventDefault();$('#atlas-search').focus();}
   if(!state.ready)return;
   if(e.key==='Escape')selectPart(null);
   if(e.key.toLowerCase()==='i'&&state.selection){e.preventDefault();toggleIsolation();}
@@ -475,7 +535,7 @@ function syncScope(){
   const engine=isEngine(),detail=isDetail(),config=currentScope();document.documentElement.dataset.viewerScope=scope;
   document.title=detail?`${config.title} · 4Runner (4th Gen) Atlas · by Nebulys`:'4Runner (4th Gen) Atlas · by Nebulys';
   viewPicker.setCurrent(scope);
-  $('#scope-description').textContent=engine?`2005 · 4.7 L V8 · ${assemblies.size} component groups`:detail?config.description:'Approved exterior · Open a system to explore its components';
+  $('#scope-description').textContent=engine?`2005 · 4.7 L V8 · ${assemblies.size} component groups`:detail?displayScopeDescription(config.description):'Approved exterior · Open a system to explore its components';
   $('#catalog-title').textContent=config.catalogTitle;
   $('.catalog').setAttribute('aria-label',detail?`${config.title} component catalog`:'Assembly catalog');
   $('.stage').setAttribute('aria-label',`Interactive 3D ${config.title}`);
@@ -516,7 +576,7 @@ function syncScope(){
   $$('[data-info-scope]').forEach(el=>el.hidden=el.dataset.infoScope!==infoScope);
   $$('[data-view]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.view===state.view)));
   if(detail){
-    $('#component-about').textContent=`${config.title}: ${assemblies.size} selectable component groups. ${config.description||''}`;
+    $('#component-about').textContent=`${config.title}: ${assemblies.size} selectable component groups. ${displayScopeDescription(config.description)}`;
     $('#component-coverage').textContent=config.coverageNote||'';
     const refs=new Map();for(const p of manifest.assemblies)for(const ref of p.references)refs.set(ref.url||ref.label,ref);
     const list=$(engine?'#engine-source-links':'#component-source-links');list.replaceChildren();
@@ -554,7 +614,7 @@ async function switchScope(next,{historyMode='push'}={}){
 const configTitle=id=>scopeDefinitions.get(id).title;
 const urlScope=()=>{const requested=new URL(location.href).searchParams.get('view');return scopeDefinitions.has(requested)?requested:'vehicle';};
 $('#scope-parent').addEventListener('click',()=>switchScope(currentScope().parentScopeId||'vehicle'));
-async function openURL(){nightPreference=new URL(location.href).searchParams.get('night')==='1';state.night=nightPreference;const route=++routeVersion;const loaded=await switchScope(urlScope(),{historyMode:'none'});if(!loaded||route!==routeVersion)return;const part=new URL(location.href).searchParams.get('part');if(part&&assemblies.has(part)){selectPart(part);focusSelection();}else selectPart(null);}
+async function openURL(){nightPreference=nightFromURL();state.night=nightPreference;const route=++routeVersion;const loaded=await switchScope(urlScope(),{historyMode:'none'});if(!loaded||route!==routeVersion)return;updateAppearance();const part=new URL(location.href).searchParams.get('part');if(part&&assemblies.has(part)){selectPart(part);focusSelection();}else selectPart(null);}
 addEventListener('popstate',openURL);
 function animate(time){
   const dt=Math.min((time-lastTime)/1000,.1);lastTime=time;
