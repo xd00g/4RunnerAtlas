@@ -184,6 +184,10 @@ function updateSelection(){
   const p=assemblies.get(state.selection).record;
   const card={...p,...partCards[p.id]};
   const numberReferenceIds=[...new Set([...(card.numberReferenceIds||[]),...(card.oemReferenceIds||[])])];
+  const coverage=card.numberCoverage||{status:'unresolved',note:card.numberStatus||'No component-specific OEM reference established.'};
+  const coverageLabels={'component-reference':'Component reference','variant-reference':'Variant candidates','factory-counterpart':'Factory counterpart','assembly-context':'Assembly context','unresolved':'Number unresolved','not-applicable':'No individual OEM number'};
+  const narrowIds=[...new Set(coverage.referenceIds||[])];
+  const narrowNumbers=[...new Set(narrowIds.flatMap(id=>(numberSources[id]?.rows||[]).flatMap(row=>row.number?[row.number]:[])))];
   panel.replaceChildren();
   const heading=document.createElement('div');heading.className='selection-heading';
   const title=document.createElement('h2');title.textContent=p.name;
@@ -214,20 +218,27 @@ function updateSelection(){
   const facts=document.createElement('dl');facts.className='part-facts';
   const factRows=[['Function',card.function||p.description],['Location',card.location||currentScope().title],['Installed',card.installedBrand||'Factory baseline; installed replacement unverified']];
   if(card.partNumber||card.oemContext)factRows.push(['Installed / supplier number',card.partNumber?.value?`${card.partNumber.value} · ${card.partNumber.status}`:'Not verified']);
-  factRows.push(['OEM references',numberReferenceIds.length?'Factory numbers and variants below':card.oemContext?'See factory context below':'No supported number in reviewed references']);
+  factRows.push(['OEM coverage',coverageLabels[coverage.status]||'Number unresolved']);
   for(const [label,value] of factRows){
     const term=document.createElement('dt');term.textContent=label;const detail=document.createElement('dd');detail.textContent=value;facts.append(term,detail);
   }
   panel.append(facts);
+  const coverageSummary=document.createElement('div');coverageSummary.className='oem-number-coverage';coverageSummary.dataset.coverageStatus=coverage.status;
+  if(narrowNumbers.length){const codes=document.createElement('p');codes.className='part-number-values oem-candidate-codes';codes.textContent=narrowNumbers.slice(0,3).join(' · ')+(narrowNumbers.length>3?` · +${narrowNumbers.length-3} candidates below`:'');coverageSummary.append(codes);}
+  const coverageNote=document.createElement('p');coverageNote.className='oem-coverage-note';coverageNote.textContent=coverage.note;coverageSummary.append(coverageNote);panel.append(coverageSummary);
   if(card.oemContext){const context=document.createElement('p');context.className='part-source-status oem-context';context.textContent=card.oemContext;panel.append(context);}
   if(card.ownerInterchangeNumbers?.length){
     const section=document.createElement('details');section.className='references number-references';const summary=document.createElement('summary');summary.textContent='Owner-confirmed CV interchange numbers';const note=document.createElement('p');note.textContent=card.ownerInterchangeStatus;const numbers=document.createElement('p');numbers.className='part-number-values';numbers.textContent=card.ownerInterchangeNumbers.join(' · ');section.append(summary,note,numbers);panel.append(section);
   }
-  if(numberReferenceIds.length){
+  if(numberReferenceIds.length||narrowIds.length){
     const section=document.createElement('details');section.className='references number-references';const summary=document.createElement('summary');summary.textContent='OEM part numbers · factory references';section.open=Boolean(card.oemContext);section.append(summary);
-    const caution=document.createElement('p');caution.textContent='These are historical reference numbers, not confirmed replacements. Tables may include other sides, production dates or equipment. Verify your vehicle and current supersessions before ordering.';section.append(caution);
-    for(const id of numberReferenceIds){const source=numberSources[id];if(!source)continue;
+    const caution=document.createElement('p');caution.textContent='Catalog candidates and source qualifications follow. Confirm installed equipment, production date and current supersessions before choosing a replacement.';section.append(caution);
+    const orderedIds=[...new Set([...narrowIds,...numberReferenceIds])];
+    let supplementaryShown=false;
+    for(const id of orderedIds){const source=numberSources[id];if(!source)continue;
+      if(!narrowIds.includes(id)&&!supplementaryShown){const note=document.createElement('p');note.className='oem-supplementary-note';note.textContent='Supplementary reference tables may include other parts, sides or equipment. Their numbers are not assigned to this specific selection.';section.append(note);supplementaryShown=true;}
       const title=document.createElement('h3');title.textContent=source.title;const origin=document.createElement('small');origin.textContent=source.source+' · '+id;section.append(title,origin);if(source.url){const link=document.createElement('a');link.href=source.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Open OEM catalog source';section.append(link);}
+      if(source.status){const status=document.createElement('p');status.className='oem-source-qualification';status.textContent=source.status;section.append(status);}
       const list=document.createElement('ul');list.className='number-reference-list';
       for(const row of source.rows){const item=document.createElement('li');if(row.heading){item.className='number-heading';item.textContent=row.heading;}else{const code=document.createElement('strong');code.textContent=row.number;item.append(code,document.createTextNode(' — '+row.label+(row.note?' · '+row.note:'')));}list.append(item);}section.append(list);
     }panel.append(section);

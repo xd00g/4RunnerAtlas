@@ -144,6 +144,11 @@ html[data-viewer-scope="engine"] .stage-caption{bottom:302px}
 @media(max-width:760px){.scopebar{flex-wrap:wrap}.scopebar #toggle-sidebar,.scopebar #expand-part{flex:1}#part-dialog .selection{padding:18px}#part-dialog .part-facts{grid-template-columns:85px minmax(0,1fr)}}
 
 .inline-expand{white-space:nowrap;color:var(--accent)}.number-reference-list{padding-left:18px;line-height:1.65}.number-reference-list li{margin:6px 0}.number-reference-list .number-heading{list-style:none;font-weight:600;margin-top:12px}.part-number-values{overflow-wrap:anywhere}.number-references h3{margin:16px 0 6px;font-size:14px}.number-reference-list strong{font-family:monospace;overflow-wrap:anywhere}
+.oem-number-coverage{margin:12px 0;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+.oem-candidate-codes{margin:0 0 7px;font-family:monospace;font-size:12px;line-height:1.6;color:var(--ink)}
+.selection .oem-coverage-note,.selection .oem-source-qualification,.selection .oem-supplementary-note{font-size:11px;line-height:1.6;margin:0;color:var(--muted);overflow-wrap:anywhere}
+.selection .oem-source-qualification,.selection .oem-supplementary-note{margin:10px 0}
+#part-dialog .oem-candidate-codes{font-size:15px}#part-dialog .oem-coverage-note,#part-dialog .oem-source-qualification,#part-dialog .oem-supplementary-note{font-size:14px}
 
 /* Keep all quick views reachable when the viewport narrows. */
 .stage-top{flex-wrap:wrap;gap:8px}

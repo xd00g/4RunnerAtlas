@@ -6,7 +6,7 @@ An interactive parts explorer for a 2005 Toyota 4Runner Sport 4WD V8, by [Nebuly
 
 Version 2 adds six vehicle system families, model callouts, unified System/Part/OEM search, assembly breadcrumbs and a details drawer that becomes a collapsible sheet on phones. Select, isolate and explode systems; open View tools for Spatial/Grid layouts, camera views and display controls. The Engine shortcut and illustrative animation remain available. Current coverage: 89 views and 850 documented component records.
 
-Night lighting is enabled by default. Use Night view in View tools to switch to daylight, or open the viewer with `?night=0`. OEM references retain their source, variant and unverified-fit qualifications.
+Night lighting is enabled by default. Use Day view in View tools to switch to daylight, or open the viewer with `?night=0`. All 850 records now have an explicit OEM reference status. References cover 734 cards: 707 narrow mappings and 27 related historical tables. Component candidates, variant alternatives, factory counterparts and assembly context stay distinct; 93 cards remain unresolved and 23 have no single applicable OEM number. Candidate numbers appear in the part panel and expanded reader, and search accepts numbers with or without hyphens. Installed supplier numbers remain separate. These references do not establish VIN-specific replacement fit, current supersessions or compatibility with custom hardware.
 
 ## Run locally
 
@@ -20,6 +20,8 @@ npm start
 Open http://127.0.0.1:8795/. Set `PORT` to use another port.
 
 The first command downloads only the public viewer catalogs and GLB models from the live site, checks their locked SHA-256 hashes, and stores them in the ignored `data/` directory. The models total about 236.4 MB before HTTP compression. Models are distributed separately to keep this repository focused on application source. If the live assets change, use a matching asset lock and source release; mismatched files are rejected.
+
+Downloads reject redirects, stop when decoded bytes exceed the locked size, and replace cached files only after exact size and SHA-256 verification. Each download has a 120-second timeout. Run `npm run test:assets` for local fixture checks.
 
 To produce static files for another web server:
 

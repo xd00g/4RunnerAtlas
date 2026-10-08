@@ -246,6 +246,7 @@ export function createAtlasNavigation({scopes, onScope, onPart, onAssembly, onCh
   function searchResults() {
     const focusedKey=document.activeElement?.dataset?.atlasResultKey;
     const query=normalize(search.value),words=query.split(' ').filter(Boolean);
+    const numericQuery=/\d/.test(query),compactQuery=query.replace(/[^a-z0-9]/g,'');
     results.replaceChildren();resultItems=[];
     if(!words.length){results.hidden=true;searchOpen=false;return;}
     const matches=text=>words.every(word=>normalize(text).includes(word));
@@ -253,6 +254,8 @@ export function createAtlasNavigation({scopes, onScope, onPart, onAssembly, onCh
     const partRank=item=>{
       const id=normalize(item.record.id),name=normalize(item.record.name);
       const numbers=[item.card.partNumber?.value,item.record.oemPartNumber,item.record.supplierPartNumber].map(normalize);
+      const exactNarrowNumber=numericQuery&&(item.card.numberCoverage?.referenceIds||[]).some(sourceId=>(numberSources[sourceId]?.rows||[]).some(row=>row.number&&normalize(row.number).replace(/[^a-z0-9]/g,'')===compactQuery));
+      if(exactNarrowNumber)return -1;
       if(id===query)return 0;
       if(name===query)return 1;
       if(numbers.includes(query))return 2;
@@ -260,30 +263,31 @@ export function createAtlasNavigation({scopes, onScope, onPart, onAssembly, onCh
       return 4;
     };
     const parts=catalog.filter(item=>matchesPart(item.record,query,item.card)).sort((a,b)=>partRank(a)-partRank(b));
-    const appendPart=item=>addResult('Part',item.record.name,item.scopeLabel,()=>onPart(item),item.card.partNumber?.value?`Installed / supplier: ${item.card.partNumber.value} · ${item.card.partNumber.status||'status unverified'}`:'',`part:${item.scope}:${item.record.id}`);
+    const appendPart=item=>addResult('Part',item.record.name,item.scopeLabel,()=>onPart(item),[item.card.partNumber?.value?`Installed / supplier: ${item.card.partNumber.value} · ${item.card.partNumber.status||'status unverified'}`:'',numericQuery?(item.card.numberCoverage?.note||item.card.numberStatus):''].filter(Boolean).join(' · '),`part:${item.scope}:${item.record.id}`);
     const exactParts=parts.filter(item=>partRank(item)<=2).slice(0,35);
     for(const item of exactParts)appendPart(item);
     for(const item of systems.slice(0,25))addResult('System',item.label,scopeTrail(item.id,definitions).map(node=>node.label).join(' / '),()=>onScope(item.id),'',`system:${item.id}`);
     for(const item of parts.filter(item=>partRank(item)>2).slice(0,35-exactParts.length))appendPart(item);
-    if(/\d/.test(query)){
-      let count=0;
+    if(numericQuery){
+      const numberMatches=[];
       for(const item of catalog){
-        const ids=[...new Set([...(item.card.numberReferenceIds||[]),...(item.card.oemReferenceIds||[])])];
+        const narrowIds=item.card.numberCoverage?.referenceIds||[];
+        const ids=[...new Set([...narrowIds,...(item.card.numberReferenceIds||[]),...(item.card.oemReferenceIds||[])])];
         for(const id of ids){
           const source=numberSources[id];if(!source)continue;
           let heading='';
           for(const [rowIndex,row] of (source.rows||[]).entries()){
             if(row.heading){heading=row.heading;continue;}
-            if(!row.number||!matches(`${row.number} ${row.label||''}`))continue;
-            const qualification=item.card.oemContext||'Historical factory reference; variant and replacement fitment unverified';
-            const context=[source.source,source.status,heading,row.note,qualification].filter(Boolean).join(' · ');
-            addResult('OEM',row.number,`${row.label||source.title} · ${item.record.name}`,()=>onPart(item),context,`oem:${item.scope}:${item.record.id}:${id}:${rowIndex}`);
-            if(++count>=25)break;
+            if(!row.number||!matches(`${row.number} ${row.number.replace(/[^a-z0-9]/gi,'')} ${row.label||''}`))continue;
+            const qualification=item.card.numberCoverage?.note||item.card.oemContext||item.card.numberStatus||'Variant and installed replacement fit unverified';
+            const scopeNote=narrowIds.includes(id)?item.card.numberCoverage?.status?.replaceAll('-',' '):'Supplementary table; number not assigned to this specific selection';
+            const context=[scopeNote,qualification,source.source,source.status,heading,row.note].filter(Boolean).join(' · ');
+            const priority=narrowIds.includes(id)?(normalize(row.number).replace(/[^a-z0-9]/g,'')===compactQuery?0:1):2;
+            numberMatches.push({item,row,source,context,id,rowIndex,priority});
           }
-          if(count>=25)break;
         }
-        if(count>=25)break;
       }
+      for(const {item,row,source,context,id,rowIndex} of numberMatches.sort((a,b)=>a.priority-b.priority).slice(0,25))addResult('OEM',row.number,`${row.label||source.title} · ${item.record.name}`,()=>onPart(item),context,`oem:${item.scope}:${item.record.id}:${id}:${rowIndex}`);
     }
     if(!resultItems.length)results.append(paragraph('No matching system, modeled part, or supported OEM reference.'));
     results.hidden=false;searchOpen=true;search.setAttribute('aria-expanded','true');

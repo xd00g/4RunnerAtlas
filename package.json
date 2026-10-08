@@ -9,6 +9,7 @@
   },
   "scripts": {
     "assets": "node scripts/fetch-assets.mjs",
+    "test:assets": "node --test scripts/tests/asset-download.test.mjs",
     "start": "node scripts/serve.mjs",
     "build": "node scripts/build.mjs"
   }
